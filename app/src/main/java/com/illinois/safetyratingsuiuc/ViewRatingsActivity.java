@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.RatingBar;
 
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
 
@@ -27,7 +28,13 @@ public class ViewRatingsActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle(getTitle());
+        // TODO update toolbar title
+        toolBarLayout.setTitle("Main Quad");
+
+        RatingBar ratingBar = binding.overallRating;
+        // TODO add correct value
+        ratingBar.setRating(4);
+
 
         FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
