@@ -17,6 +17,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
+    // Initialize the AutocompleteSupportFragment.
+    AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+            getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +48,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng mainQuad = new LatLng(40.1075, -88.2272);
+        mMap.addMarker(new MarkerOptions().position(mainQuad).title("Marker at Main Quad"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(mainQuad));
     }
+
+    // Specify the types of place data to return.
+    autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+    // Set up a PlaceSelectionListener to handle the response.
+    autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        @Override
+        public void onPlaceSelected(@NonNull Place place) {
+            // TODO: Get info about the selected place.
+            Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+        }
+
+
+        @Override
+        public void onError(@NonNull Status status) {
+            // TODO: Handle the error.
+            Log.i(TAG, "An error occurred: " + status);
+        }
+    });
 }
