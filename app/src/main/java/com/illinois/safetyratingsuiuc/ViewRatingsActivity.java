@@ -1,27 +1,22 @@
 package com.illinois.safetyratingsuiuc;
 
-import android.media.Rating;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
 
@@ -44,10 +39,14 @@ public class ViewRatingsActivity extends AppCompatActivity {
         // TODO update toolbar title
         toolBarLayout.setTitle("Main Quad");
 
-        RatingBar ratingBar = binding.overallRating;
-        // TODO add correct value
-        ratingBar.setRating(4);
+        Float overallRating = 4.2f;
 
+        RatingBar overallRatingBar = binding.overallRating;
+        // TODO add correct value
+        overallRatingBar.setRating(overallRating);
+
+        TextView overallRatingNum = binding.overallRatingNum;
+        overallRatingNum.setText(overallRating.toString());
 
 
         View ratingsLayout = findViewById(R.id.ratings_content_layout);
