@@ -8,31 +8,69 @@
     tools:context=".ViewRatingsActivity"
     tools:showIn="@layout/activity_view_ratings">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/ratings_graph"
-            android:layout_margin="50dp"
-            android:paddingTop="50dp"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/text_margin"-->
-<!--            android:text="Test String" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:paddingLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="10pt"
+            android:text="By Time"
+            />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/text_margin"-->
-<!--            android:text="@string/large_text" />-->
-    </RelativeLayout>
+            <GridLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:columnCount="2">
+
+                <Spinner
+                    android:id="@+id/filter_time_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="25dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="25dp">
+
+                    <TextView
+                        android:id="@+id/time_bounded_rating_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+
+                    <RatingBar
+                        android:id="@+id/time_bounded_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:layout_marginRight="10dp"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:scaleX="1"
+                        android:scaleY="1" />
+
+                </LinearLayout>
+
+
+            </GridLayout>
+
+
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

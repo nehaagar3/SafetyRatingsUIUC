@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
@@ -45,6 +47,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         expandedTitle.setText(location);
 
         Float overallRating = 4.2f;
+        Float boundedRating = 3.3f;
 
         RatingBar overallRatingBar = binding.overallRating;
         // TODO add correct value
@@ -53,10 +56,24 @@ public class ViewRatingsActivity extends AppCompatActivity {
         TextView overallRatingNum = binding.overallRatingNum;
         overallRatingNum.setText(overallRating.toString());
 
-
         View ratingsLayout = findViewById(R.id.ratings_content_layout);
+
+        // TODO create listener for changes
         BarChart barChart = ratingsLayout.findViewById(R.id.ratings_graph);
         setGraphContents(barChart);
+
+        // TODO create listener for changes
+        Spinner timeDropdown = ratingsLayout.findViewById(R.id.filter_time_select);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, getXAxisValues());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        timeDropdown.setAdapter(adapter);
+
+        TextView timeBoundedRatingNum = ratingsLayout.findViewById(R.id.time_bounded_rating_num);
+        timeBoundedRatingNum.setText(boundedRating.toString());
+
+        RatingBar timeBoundedRatingBar = ratingsLayout.findViewById(R.id.time_bounded_rating);
+        timeBoundedRatingBar.setRating(boundedRating);
 
     }
 
@@ -78,14 +95,13 @@ public class ViewRatingsActivity extends AppCompatActivity {
         yAxis.setAxisMinimum(0);
         yAxis.setGranularity(1);
 
-
-
         XAxis xAxis = chart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getXAxisValues()));
-
         // X axis values on bottom of chart
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
+        chart.setPinchZoom(false);
+        chart.setScaleEnabled(false);
 
         // Remove grid lines
         chart.getAxisLeft().setDrawGridLines(false);
