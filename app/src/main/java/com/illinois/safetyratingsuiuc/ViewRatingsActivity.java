@@ -26,6 +26,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
     private ActivityViewRatingsBinding binding;
 
+    // TODO How do we get this?
+    private String location = "Main Quad";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +39,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        // TODO update toolbar title
-        toolBarLayout.setTitle("Main Quad");
+        toolBarLayout.setTitle(location);
+
+        TextView expandedTitle = binding.titleLocation;
+        expandedTitle.setText(location);
 
         Float overallRating = 4.2f;
 
