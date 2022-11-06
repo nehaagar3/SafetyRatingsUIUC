@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-public class ViewRatingsActivity extends AppCompatActivity implements OnChartValueSelectedListener, AdapterView.OnItemSelectedListener {
+public class ViewRatingsActivity extends AppCompatActivity {
 
     private ActivityViewRatingsBinding binding;
 
@@ -48,7 +49,7 @@ public class ViewRatingsActivity extends AppCompatActivity implements OnChartVal
 
     // Screen components
     Spinner timeDropdown;
-
+    BarChart reviewChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +81,8 @@ public class ViewRatingsActivity extends AppCompatActivity implements OnChartVal
         View ratingsLayout = findViewById(R.id.ratings_content_layout);
 
         // TODO create listener for changes
-        BarChart barChart = ratingsLayout.findViewById(R.id.ratings_graph);
-        setGraphContents(barChart);
+        reviewChart = ratingsLayout.findViewById(R.id.ratings_graph);
+        setGraphContents(reviewChart);
 
         // TODO create listener for changes
         timeDropdown = ratingsLayout.findViewById(R.id.filter_time_select);
@@ -89,6 +90,7 @@ public class ViewRatingsActivity extends AppCompatActivity implements OnChartVal
                 android.R.layout.simple_spinner_item, timeIntervals);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeDropdown.setAdapter(adapter);
+        timeDropdown.setOnItemSelectedListener(timeDropdownListener);
 
         TextView timeBoundedRatingNum = ratingsLayout.findViewById(R.id.time_bounded_rating_num);
         timeBoundedRatingNum.setText(boundedRating.toString());
@@ -104,7 +106,7 @@ public class ViewRatingsActivity extends AppCompatActivity implements OnChartVal
     }
 
     private void setGraphContents(BarChart chart) {
-        chart.setOnChartValueSelectedListener(this);
+        chart.setOnChartValueSelectedListener(chartListener);
 
         BarData data = new BarData(getDataSet());
 
@@ -175,31 +177,39 @@ public class ViewRatingsActivity extends AppCompatActivity implements OnChartVal
     // TODO
     private void showReviews() {}
 
-    // Dropdown Listener
-    public void onDropdownSelected() {}
+    // Review graph listener
+    OnChartValueSelectedListener chartListener =
+        new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                int selection = (int) e.getX() + 1;
+                timeDropdown.setSelection(selection, true);
+                showReviews();
+            }
 
+            @Override
+            public void onNothingSelected() {
+                timeDropdown.setSelection(0, true);
+                showReviews();
+            }
+        };
 
-    // Graph Listeners
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-        int selection = (int) e.getX() + 1;
-        timeDropdown.setSelection(selection, true);
-        showReviews();
-    }
+    // Time dropdown change listener
+    AdapterView.OnItemSelectedListener timeDropdownListener =
+        new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView parent, View view, int position, long id) {
+                String selection = (String) parent.getItemAtPosition(position);
+                if (selection.equals(timeIntervals.get(0))) {
+                    reviewChart.highlightValues(null);
+                } else {
+                    reviewChart.highlightValue(position - 1, 0);
+                }
 
-    @Override
-    public void onNothingSelected() {
-        timeDropdown.setSelection(0, true);
-        showReviews();
-    }
+                showReviews();
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            }
 
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
+            @Override
+            public void onNothingSelected(AdapterView adapterView) {}
+        };
 }
