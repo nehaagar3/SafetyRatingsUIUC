@@ -23,35 +23,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:paddingLeft="20dp"
             android:textStyle="bold"
             android:textSize="10pt"
-            android:text="By Time"
+            android:text="Filter Reviews by Time"
             />
 
             <GridLayout
                 android:id="@+id/RelativeLayout01"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/text_margin"
                 android:columnCount="2">
 
                 <Spinner
                     android:id="@+id/filter_time_select"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                     android:paddingRight="25dp"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="25dp">
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="50dp">
 
                     <TextView
                         android:id="@+id/time_bounded_rating_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingRight="5dp"
                         android:layout_gravity="center_horizontal" />
 
                     <RatingBar
@@ -61,6 +64,7 @@
                         android:isIndicator="true"
                         android:numStars="5"
                         android:layout_marginRight="10dp"
+                        android:paddingTop="3dp"
                         style="?android:attr/ratingBarStyleSmall"
                         android:scaleX="1"
                         android:scaleY="1" />

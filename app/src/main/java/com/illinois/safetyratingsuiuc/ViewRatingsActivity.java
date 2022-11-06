@@ -146,14 +146,14 @@ public class ViewRatingsActivity extends AppCompatActivity {
     // TODO add to consts?
     private ArrayList getXAxisValues() {
         ArrayList xAxis = new ArrayList();
-        xAxis.add("12am-3am");
-        xAxis.add("3am-6am");
-        xAxis.add("6am-9am");
+        xAxis.add("12-3am");
+        xAxis.add("3-6am");
+        xAxis.add("6-9am");
         xAxis.add("9am-12pm");
-        xAxis.add("12pm-3pm");
-        xAxis.add("3pm-6pm");
-        xAxis.add("6pm-9pm");
-        xAxis.add("9pm-12pm");
+        xAxis.add("12-3pm");
+        xAxis.add("3-6pm");
+        xAxis.add("6-9pm");
+        xAxis.add("9pm-12am");
         return xAxis;
     }
 
