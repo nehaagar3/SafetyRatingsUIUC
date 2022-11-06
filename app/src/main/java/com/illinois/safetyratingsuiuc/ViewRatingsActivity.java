@@ -13,6 +13,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,7 +24,9 @@ import android.widget.TextView;
 
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewRatingsActivity extends AppCompatActivity {
 
@@ -75,10 +79,14 @@ public class ViewRatingsActivity extends AppCompatActivity {
         RatingBar timeBoundedRatingBar = ratingsLayout.findViewById(R.id.time_bounded_rating);
         timeBoundedRatingBar.setRating(boundedRating);
 
+        RecyclerView reviewRV = ratingsLayout.findViewById(R.id.review_rv);
+        ReviewAdapter reviewAdapter = new ReviewAdapter(this, getReviewData());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        reviewRV.setLayoutManager(linearLayoutManager);
+        reviewRV.setAdapter(reviewAdapter);
     }
 
     private void setGraphContents(BarChart chart) {
-        //BarChart barChart = binding.ratingsGraph;
         BarData data = new BarData(getDataSet());
 
         // Don't label each bar with numerical data
@@ -114,13 +122,12 @@ public class ViewRatingsActivity extends AppCompatActivity {
         chart.animateY(2000);
     }
 
-
+    // TODO add real data
     private BarDataSet getDataSet() {
         // adding new entry to our array list with bar
         // entry and passing x and y axis value to it.
         ArrayList barEntriesArrayList = new ArrayList<>();
 
-        // TODO add real data
         barEntriesArrayList.add(new BarEntry(0f, 1f));
         barEntriesArrayList.add(new BarEntry(1f, 1.5f));
         barEntriesArrayList.add(new BarEntry(2f, 2f));
@@ -149,5 +156,15 @@ public class ViewRatingsActivity extends AppCompatActivity {
         xAxis.add("9pm-12pm");
         return xAxis;
     }
+
+    private ArrayList<Review> getReviewData() {
+        ArrayList reviewList = new ArrayList();
+        for(int i = 1; i < 6; i++) {
+            reviewList.add(new Review("Main Quad", "October " + i + ", 2022", "12pm-1pm", i, "Test Comment " + i));
+        }
+
+        return reviewList;
+    }
+
 
 }
