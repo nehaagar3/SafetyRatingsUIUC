@@ -8,7 +8,10 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -26,18 +30,34 @@ import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
-public class ViewRatingsActivity extends AppCompatActivity {
+public class ViewRatingsActivity extends AppCompatActivity implements OnChartValueSelectedListener, AdapterView.OnItemSelectedListener {
 
     private ActivityViewRatingsBinding binding;
 
     // TODO How do we get this?
     private String location = "Main Quad";
+    private Float overallRating = 4.2f;
+    private Float boundedRating = 3.3f;
+
+    // TODO Move to consts?
+    private ArrayList<String> chartXAxis;
+    private ArrayList<String> timeIntervals;
+
+    // Screen components
+    Spinner timeDropdown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        chartXAxis = new ArrayList<>(Arrays.asList(
+                "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        timeIntervals = new ArrayList(chartXAxis);
+        timeIntervals.add(0, "All time");
 
         binding = ActivityViewRatingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -49,9 +69,6 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         TextView expandedTitle = binding.titleLocation;
         expandedTitle.setText(location);
-
-        Float overallRating = 4.2f;
-        Float boundedRating = 3.3f;
 
         RatingBar overallRatingBar = binding.overallRating;
         // TODO add correct value
@@ -67,9 +84,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
         setGraphContents(barChart);
 
         // TODO create listener for changes
-        Spinner timeDropdown = ratingsLayout.findViewById(R.id.filter_time_select);
+        timeDropdown = ratingsLayout.findViewById(R.id.filter_time_select);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, getXAxisValues());
+                android.R.layout.simple_spinner_item, timeIntervals);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeDropdown.setAdapter(adapter);
 
@@ -87,6 +104,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
     }
 
     private void setGraphContents(BarChart chart) {
+        chart.setOnChartValueSelectedListener(this);
+
         BarData data = new BarData(getDataSet());
 
         // Don't label each bar with numerical data
@@ -104,7 +123,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         yAxis.setGranularity(1);
 
         XAxis xAxis = chart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(getXAxisValues()));
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(chartXAxis));
         // X axis values on bottom of chart
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
@@ -143,20 +162,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         return barDataSet1;
     }
 
-    // TODO add to consts?
-    private ArrayList getXAxisValues() {
-        ArrayList xAxis = new ArrayList();
-        xAxis.add("12-3am");
-        xAxis.add("3-6am");
-        xAxis.add("6-9am");
-        xAxis.add("9am-12pm");
-        xAxis.add("12-3pm");
-        xAxis.add("3-6pm");
-        xAxis.add("6-9pm");
-        xAxis.add("9pm-12am");
-        return xAxis;
-    }
-
+    // TODO temporary
     private ArrayList<Review> getReviewData() {
         ArrayList reviewList = new ArrayList();
         for(int i = 1; i < 6; i++) {
@@ -166,5 +172,34 @@ public class ViewRatingsActivity extends AppCompatActivity {
         return reviewList;
     }
 
+    // TODO
+    private void showReviews() {}
 
+    // Dropdown Listener
+    public void onDropdownSelected() {}
+
+
+    // Graph Listeners
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        int selection = (int) e.getX() + 1;
+        timeDropdown.setSelection(selection, true);
+        showReviews();
+    }
+
+    @Override
+    public void onNothingSelected() {
+        timeDropdown.setSelection(0, true);
+        showReviews();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

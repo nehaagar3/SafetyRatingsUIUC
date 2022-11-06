@@ -68,8 +68,8 @@
                         style="?android:attr/ratingBarStyleSmall"
                         android:scaleX="1"
                         android:scaleY="1" />
-
                 </LinearLayout>
+
             </GridLayout>
 
             <androidx.recyclerview.widget.RecyclerView
