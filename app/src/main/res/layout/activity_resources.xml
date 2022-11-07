@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResourcesActivity">
+    tools:context=".ResourcesActivity"
+    android:id="@+id/drawerLayout">
     
     <LinearLayout
         android:layout_width="match_parent"
