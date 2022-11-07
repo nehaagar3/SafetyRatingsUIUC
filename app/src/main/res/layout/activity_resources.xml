@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Resources Page"
+            android:text="Welcome! Here you can find a variety of safety resources available to everyone at UIUC."
             android:textAlignment="center" />
 
     </LinearLayout>
