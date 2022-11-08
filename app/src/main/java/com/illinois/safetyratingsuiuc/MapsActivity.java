@@ -1,5 +1,7 @@
 package com.illinois.safetyratingsuiuc;
 
+import static java.security.AccessController.getContext;
+
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
@@ -9,7 +11,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.illinois.safetyratingsuiuc.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -43,9 +46,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker to left&right corner of campus to create bounds
+        LatLng leftCorner = new LatLng(40.116777, -88.245366);
+        LatLng rightCorner = new LatLng(40.097799, -88.218471);
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        builder.include(leftCorner);
+        builder.include(rightCorner);
+
+        LatLngBounds bounds = builder.build();
+
+        // bound the camera to the campus
+        mMap.setLatLngBoundsForCameraTarget(bounds);
+
+        // the camera is at Main Quad in default
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.107912, -88.227267) , 17.0f) );
+
+        // remove markers
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
     }
 }
