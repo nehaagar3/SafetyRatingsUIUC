@@ -6,10 +6,10 @@ public class Review {
     private String location;
     private String time;
     private String date;
-    private int rating;
+    private float rating;
     private String comment;
 
-    public Review(String location, String date, String time, int rating, String comment) {
+    public Review(String location, String date, String time, float rating, String comment) {
         this.location = location;
         this.date = date;
         this.time = time;
@@ -17,11 +17,11 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
