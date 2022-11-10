@@ -45,4 +45,9 @@ public class ReviewData {
             return locationReviews.get(timeInterval);
         }
     }
+
+    public ArrayList<ArrayList<Review>> getLocationReviews() {
+        return locationReviews;
+    }
+
 }

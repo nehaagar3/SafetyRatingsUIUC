@@ -107,7 +107,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
     private void setGraphContents(BarChart chart) {
         chart.setOnChartValueSelectedListener(chartListener);
 
-        BarData data = new BarData(getDataSet());
+        BarData data = new BarData(updateDataSet());
 
         // Don't label each bar with numerical data
         data.setDrawValues(false);
@@ -143,19 +143,15 @@ public class ViewRatingsActivity extends AppCompatActivity {
     }
 
     // TODO add real data
-    private BarDataSet getDataSet() {
-        // adding new entry to our array list with bar
-        // entry and passing x and y axis value to it.
+    private BarDataSet updateDataSet() {
+        ArrayList<ArrayList<Review>> reviewList = Globals.reviewData.getLocationReviews();
+
         ArrayList barEntriesArrayList = new ArrayList<>();
 
-        barEntriesArrayList.add(new BarEntry(0f, 1f));
-        barEntriesArrayList.add(new BarEntry(1f, 1.5f));
-        barEntriesArrayList.add(new BarEntry(2f, 2f));
-        barEntriesArrayList.add(new BarEntry(3f, 2.5f));
-        barEntriesArrayList.add(new BarEntry(4f, 3f));
-        barEntriesArrayList.add(new BarEntry(5f, 3.5f));
-        barEntriesArrayList.add(new BarEntry(6f, 4f));
-        barEntriesArrayList.add(new BarEntry(7f, 4.5f));
+        for(int i = 0; i < reviewList.size(); i++) {
+            Float rating = getAverageRating(reviewList.get(i));
+            barEntriesArrayList.add(new BarEntry((float) i, rating));
+        }
 
 
         BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
@@ -163,58 +159,20 @@ public class ViewRatingsActivity extends AppCompatActivity {
         return barDataSet1;
     }
 
-//    // TODO add real data
-//    private BarDataSet updateDataSet(ArrayList<ArrayList<Review>> reviewData) {
-//        // adding new entry to our array list with bar
-//        // entry and passing x and y axis value to it.
-//        ArrayList barEntriesArrayList = new ArrayList<>();
-//
-//        for(int i = 0; i < reviewData.size(); i++) {
-//            for
-//        }
-//        barEntriesArrayList.add(new BarEntry(0f, 1f));
-//        barEntriesArrayList.add(new BarEntry(1f, 1.5f));
-//        barEntriesArrayList.add(new BarEntry(2f, 2f));
-//        barEntriesArrayList.add(new BarEntry(3f, 2.5f));
-//        barEntriesArrayList.add(new BarEntry(4f, 3f));
-//        barEntriesArrayList.add(new BarEntry(5f, 3.5f));
-//        barEntriesArrayList.add(new BarEntry(6f, 4f));
-//        barEntriesArrayList.add(new BarEntry(7f, 4.5f));
-//
-//
-//        BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
-//
-//        return barDataSet1;
-//    }
 
+    private void showOverallRating() {
+        ArrayList<Review> data = Globals.reviewData.getReviews(0, true);
 
-    public void showOverallRating() {
-        ArrayList<Review> data = Constants.reviewData.getReviews(0, true);
-
-        // Avg Rating
-        Float rating = 0f;
-        if (data.size() != 0) {
-            for(int i = 0; i < data.size(); i++) {
-                rating += data.get(i).getRating();
-            }
-            rating /= data.size();
-        }
+        Float rating = getAverageRating(data);
 
         overallRatingNum.setText(String.format("%.2g%n", rating));
         overallRatingBar.setRating(rating);
     }
 
     private void showReviews(int timeInterval, boolean all) {
-        ArrayList<Review> data = Constants.reviewData.getReviews(timeInterval, all);
+        ArrayList<Review> data = Globals.reviewData.getReviews(timeInterval, all);
 
-        // Avg Rating
-        Float rating = 0f;
-        if (data.size() != 0) {
-            for(int i = 0; i < data.size(); i++) {
-                rating += data.get(i).getRating();
-            }
-            rating /= data.size();
-        }
+        Float rating = getAverageRating(data);
 
         timeBoundedRatingNum.setText(String.format("%.2g%n", rating));
         timeBoundedRatingBar.setRating(rating);
@@ -223,6 +181,18 @@ public class ViewRatingsActivity extends AppCompatActivity {
         activeReviewData.clear();
         activeReviewData.addAll(data);
         reviewAdapter.notifyDataSetChanged();
+    }
+
+    private Float getAverageRating(ArrayList<Review> data) {
+        Float rating = 0f;
+        if (data.size() != 0) {
+            for(int i = 0; i < data.size(); i++) {
+                rating += data.get(i).getRating();
+            }
+            rating /= data.size();
+        }
+
+        return rating;
     }
 
     // Review graph listener
