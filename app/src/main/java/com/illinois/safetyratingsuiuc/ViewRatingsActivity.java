@@ -52,6 +52,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
     // Screen components
     Spinner timeDropdown;
     BarChart reviewChart;
+    TextView timeBoundedRatingNum;
+    RatingBar timeBoundedRatingBar;
 
     ReviewAdapter reviewAdapter;
 
@@ -95,10 +97,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
         timeDropdown.setAdapter(adapter);
         timeDropdown.setOnItemSelectedListener(timeDropdownListener);
 
-        TextView timeBoundedRatingNum = ratingsLayout.findViewById(R.id.time_bounded_rating_num);
+        timeBoundedRatingNum = ratingsLayout.findViewById(R.id.time_bounded_rating_num);
         timeBoundedRatingNum.setText(boundedRating.toString());
 
-        RatingBar timeBoundedRatingBar = ratingsLayout.findViewById(R.id.time_bounded_rating);
+        timeBoundedRatingBar = ratingsLayout.findViewById(R.id.time_bounded_rating);
         timeBoundedRatingBar.setRating(boundedRating);
 
         RecyclerView reviewRV = ratingsLayout.findViewById(R.id.review_rv);
@@ -193,10 +195,24 @@ public class ViewRatingsActivity extends AppCompatActivity {
 //        return barDataSet1;
 //    }
 
-    // TODO
     private void showReviews(int timeInterval, boolean all) {
+        ArrayList<Review> data = Constants.reviewData.getReviews(timeInterval, all);
+
+        // Avg Rating
+        Float rating = 0f;
+        if (data.size() != 0) {
+            for(int i = 0; i < data.size(); i++) {
+                rating += data.get(i).getRating();
+            }
+            rating /= data.size();
+        }
+
+        timeBoundedRatingNum.setText(String.format("%.2g%n", rating));
+        timeBoundedRatingBar.setRating(rating);
+
+        // set Reviews
         activeReviewData.clear();
-        activeReviewData.addAll(Constants.reviewData.getReviews(timeInterval, all));
+        activeReviewData.addAll(data);
         reviewAdapter.notifyDataSetChanged();
     }
 

@@ -45,8 +45,4 @@ public class ReviewData {
             return locationReviews.get(timeInterval);
         }
     }
-
-
-
-
 }
