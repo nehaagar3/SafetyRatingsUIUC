@@ -41,11 +41,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
     // TODO Add as activity parameter
     private String location = "Main Quad";
-    // TODO add to data file
-    private Float overallRating = 4.2f;
-    private Float boundedRating = 3.3f;
 
-    // TODO Move to consts?
     private ArrayList<String> chartXAxis;
     private ArrayList<String> timeIntervals;
 
@@ -54,6 +50,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
     BarChart reviewChart;
     TextView timeBoundedRatingNum;
     RatingBar timeBoundedRatingBar;
+    RatingBar overallRatingBar;
+    TextView overallRatingNum;
 
     ReviewAdapter reviewAdapter;
 
@@ -78,12 +76,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
         TextView expandedTitle = binding.titleLocation;
         expandedTitle.setText(location);
 
-        RatingBar overallRatingBar = binding.overallRating;
-        // TODO add correct value
-        overallRatingBar.setRating(overallRating);
-
-        TextView overallRatingNum = binding.overallRatingNum;
-        overallRatingNum.setText(overallRating.toString());
+        overallRatingBar = binding.overallRating;
+        overallRatingNum = binding.overallRatingNum;
 
         View ratingsLayout = findViewById(R.id.ratings_content_layout);
 
@@ -98,10 +92,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         timeDropdown.setOnItemSelectedListener(timeDropdownListener);
 
         timeBoundedRatingNum = ratingsLayout.findViewById(R.id.time_bounded_rating_num);
-        timeBoundedRatingNum.setText(boundedRating.toString());
-
         timeBoundedRatingBar = ratingsLayout.findViewById(R.id.time_bounded_rating);
-        timeBoundedRatingBar.setRating(boundedRating);
 
         RecyclerView reviewRV = ratingsLayout.findViewById(R.id.review_rv);
         reviewAdapter = new ReviewAdapter(this, activeReviewData);
@@ -109,6 +100,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         reviewRV.setLayoutManager(linearLayoutManager);
 
+        showOverallRating();
         showReviews(0, true);
     }
 
@@ -194,6 +186,23 @@ public class ViewRatingsActivity extends AppCompatActivity {
 //
 //        return barDataSet1;
 //    }
+
+
+    public void showOverallRating() {
+        ArrayList<Review> data = Constants.reviewData.getReviews(0, true);
+
+        // Avg Rating
+        Float rating = 0f;
+        if (data.size() != 0) {
+            for(int i = 0; i < data.size(); i++) {
+                rating += data.get(i).getRating();
+            }
+            rating /= data.size();
+        }
+
+        overallRatingNum.setText(String.format("%.2g%n", rating));
+        overallRatingBar.setRating(rating);
+    }
 
     private void showReviews(int timeInterval, boolean all) {
         ArrayList<Review> data = Constants.reviewData.getReviews(timeInterval, all);
