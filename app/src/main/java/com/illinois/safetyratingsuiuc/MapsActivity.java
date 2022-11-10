@@ -23,6 +23,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.illinois.safetyratingsuiuc.databinding.ActivityMapsBinding;
 
 import java.util.Arrays;
+import java.util.Dictionary;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -98,3 +99,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mainQuad));
     }
 }
+
