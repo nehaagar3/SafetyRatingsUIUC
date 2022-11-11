@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SafetyRatingsUIUC</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title">Title</string>
+    <string name="supporting_text">This is a dummy bottom sheet</string>
+    <string name="action">This button does nothing</string>
 </resources>
