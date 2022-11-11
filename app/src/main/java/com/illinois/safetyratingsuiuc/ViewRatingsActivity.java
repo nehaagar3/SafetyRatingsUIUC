@@ -28,6 +28,8 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
 
 import java.time.LocalDateTime;
@@ -100,6 +102,24 @@ public class ViewRatingsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         reviewRV.setLayoutManager(linearLayoutManager);
 
+        FloatingActionButton addReviewButton = binding.addReviewButton;
+        addReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "TODO: Route to add reviews", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        FloatingActionButton viewResourcesButton = binding.viewResourcesButton;
+        viewResourcesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "TODO: Route to view resources page", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         showOverallRating();
         showReviews(0, true);
     }
@@ -141,8 +161,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         chart.animateY(2000);
     }
-
-    // TODO add real data
+    
     private BarDataSet updateDataSet() {
         ArrayList<ArrayList<Review>> reviewList = Globals.reviewData.getLocationReviews();
 
