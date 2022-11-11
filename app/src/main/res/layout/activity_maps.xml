@@ -30,7 +30,19 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".MapsActivity"/>
+                tools:context=".MapsActivity">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:src= "@drawable/ic_baseline_info_24"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginRight = "10dp"
+                    android:layout_marginBottom = "20dp"
+                    app:fabCustomSize="48dp"
+                    app:fabSize="auto"
+                    app:maxImageSize="48dp" />
+            </fragment>
         </LinearLayout>
 
     </RelativeLayout>
