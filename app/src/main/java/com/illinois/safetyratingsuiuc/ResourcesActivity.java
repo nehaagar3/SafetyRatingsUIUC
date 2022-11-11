@@ -4,15 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class ResourcesActivity extends AppCompatActivity {
 
     // Create attributes for the navigation drawer and toggle button at the top right
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private FragmentTransaction fragmentTransaction;
+    private NavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,62 @@ public class ResourcesActivity extends AppCompatActivity {
 
         // Lets the user see the 'back' navigation button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Sets up which fragment (tab) to display when first opening the resources page
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        // Add the 'home' fragment into the layout container
+        fragmentTransaction.add(R.id.main_container, new AboutUsFragment());
+
+        // Commit the fragment that is displayed
+        fragmentTransaction.commit();
+
+        // Set the title of the toolbar to be displayed, corresponds to what fragment is displayed
+        getSupportActionBar().setTitle("About us");
+
+        navigationView = (NavigationView) findViewById(R.id.nav_menu);
+
+        // Click listener for navigation view
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.nav_about:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new SafeWalksFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("About Fragment");
+                        item.setChecked(true);
+                        break;
+
+                    case R.id.nav_safewalks:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new SafeWalksFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Safe Walks Fragment");
+                        item.setChecked(true);
+                        break;
+
+                    case R.id.nav_saferides:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new SafeRidesFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Safe Rides Fragment");
+                        item.setChecked(true);
+                        break;
+
+                    case R.id.nav_uipd:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new PoliceFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Police Fragment");
+                        item.setChecked(true);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     /**
