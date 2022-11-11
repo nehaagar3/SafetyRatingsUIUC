@@ -23,4 +23,6 @@ public class Location {
     public Dictionary getReviews() {
         return lReviews;
     }
+
+//    public void addReview(review) { lReviews[] = review; }
 }
