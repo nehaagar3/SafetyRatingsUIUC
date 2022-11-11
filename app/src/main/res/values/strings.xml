@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SafetyRatingsUIUC</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="select_ratings">Safety Ratings<font color='#FF0000'>*</font></string>
+    <string name="select_time">Select Time<font color='#FF0000'>*</font></string>
+    <string name="select_date">Select Date<font color='#FF0000'>*</font></string>
+    <string name="enter_comment">Comment<font color='#FF0000'>*</font></string>
+    <string name="submit_review">Submit Review</string>
 </resources>
