@@ -43,6 +43,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
     // TODO Add as activity parameter
     private String location = "Main Quad";
+    private ReviewLocation reviewLocation;
 
     private ArrayList<String> chartXAxis;
     private ArrayList<String> timeIntervals;
@@ -62,6 +63,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
         chartXAxis = Constants.timeStrings;
         timeIntervals = new ArrayList<>(Arrays.asList(
@@ -121,7 +124,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         });
 
         showOverallRating();
-        showReviews(0, true);
+        showReviews(null);
     }
 
     private void setGraphContents(BarChart chart) {
@@ -161,9 +164,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         chart.animateY(2000);
     }
-    
+
     private BarDataSet updateDataSet() {
-        ArrayList<ArrayList<Review>> reviewList = Globals.reviewData.getLocationReviews();
+
+        ArrayList<ArrayList<Review>> reviewList = reviewLocation.getReviewData();
 
         ArrayList barEntriesArrayList = new ArrayList<>();
 
@@ -180,7 +184,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
 
     private void showOverallRating() {
-        ArrayList<Review> data = Globals.reviewData.getReviews(0, true);
+        ArrayList<Review> data = reviewLocation.getReviews(null);
 
         Float rating = getAverageRating(data);
 
@@ -188,8 +192,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
         overallRatingBar.setRating(rating);
     }
 
-    private void showReviews(int timeInterval, boolean all) {
-        ArrayList<Review> data = Globals.reviewData.getReviews(timeInterval, all);
+    private void showReviews(Integer timeInterval) {
+        ArrayList<Review> data = reviewLocation.getReviews(timeInterval);
 
         Float rating = getAverageRating(data);
 
@@ -221,13 +225,13 @@ public class ViewRatingsActivity extends AppCompatActivity {
             public void onValueSelected(Entry e, Highlight h) {
                 int selection = (int) e.getX() + 1;
                 timeDropdown.setSelection(selection, true);
-                showReviews(selection - 1, false);
+                showReviews(selection - 1);
             }
 
             @Override
             public void onNothingSelected() {
                 timeDropdown.setSelection(0, true);
-                showReviews(0, true);
+                showReviews(null);
             }
         };
 
@@ -238,10 +242,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (position == 0) {
                     reviewChart.highlightValues(null);
-                    showReviews(0, true);
+                    showReviews(null);
                 } else {
                     reviewChart.highlightValue(position - 1, 0);
-                    showReviews(position - 1, false);
+                    showReviews(position - 1);
                 }
             }
 
