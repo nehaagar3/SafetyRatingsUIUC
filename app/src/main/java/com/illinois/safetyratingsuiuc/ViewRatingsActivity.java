@@ -1,5 +1,6 @@
 package com.illinois.safetyratingsuiuc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -111,6 +112,17 @@ public class ViewRatingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "TODO: Route to add reviews", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                // Route to new activity
+//                Intent intent = new Intent(ViewRatingsActivity.this, AddRatingsActivity.class);
+//                Bundle b = new Bundle();
+//                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location); //Your id
+//                intent.putExtras(b); //Put your id to your next Intent
+//                startActivity(intent);
+//                finish();
+
+                // In the AddRatingsActiviy activity, access the location string as follows
+                //Bundle b = getIntent().getExtras();
+                //String value = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
             }
         });
 
