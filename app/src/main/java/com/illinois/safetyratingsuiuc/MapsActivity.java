@@ -91,11 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        View bottomSheet = findViewById(R.id.bottomSheet);
-        BottomSheetBehavior mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mBottomSheetBehavior.setPeekHeight(300);
-        mBottomSheetBehavior.setHideable(false);
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_DRAGGING);
     }
 
     /**
