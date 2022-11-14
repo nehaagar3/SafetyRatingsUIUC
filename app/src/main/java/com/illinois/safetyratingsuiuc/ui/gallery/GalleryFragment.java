@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.illinois.safetyratingsuiuc.ExpandableListData;
 import com.illinois.safetyratingsuiuc.MapsActivity;
 import com.illinois.safetyratingsuiuc.MyExpandableListAdapter;
 import com.illinois.safetyratingsuiuc.R;
 import com.illinois.safetyratingsuiuc.Resource;
 import com.illinois.safetyratingsuiuc.databinding.FragmentGalleryBinding;
-import com.illinois.safetyratingsuiuc.ExpandableListDataPump;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +48,7 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getSafeWalksAndSafeRidesData();
+        expandableListDetail = ExpandableListData.getSafeWalksAndSafeRidesData();
         expandableListTitle = new ArrayList(expandableListDetail.keySet());
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.illinois.safetyratingsuiuc.ExpandableListDataPump;
+import com.illinois.safetyratingsuiuc.ExpandableListData;
 import com.illinois.safetyratingsuiuc.MyExpandableListAdapter;
 import com.illinois.safetyratingsuiuc.R;
 import com.illinois.safetyratingsuiuc.databinding.FragmentGalleryBinding;
@@ -45,7 +45,7 @@ public class SlideshowFragment extends Fragment {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getPoliceData();
+        expandableListDetail = ExpandableListData.getPoliceData();
         expandableListTitle = new ArrayList(expandableListDetail.keySet());
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);

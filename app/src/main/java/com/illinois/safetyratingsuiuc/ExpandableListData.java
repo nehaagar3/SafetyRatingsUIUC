@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExpandableListDataPump {
-    public static HashMap getSafeWalksAndSafeRidesData() {
-        HashMap expandableListDetail = new HashMap();
+public class ExpandableListData {
+    public static HashMap<String, List<String>> getSafeWalksAndSafeRidesData() {
+        HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        List safeRidesInfo = new ArrayList();
+        List<String> safeRidesInfo = new ArrayList<>();
         safeRidesInfo.add("The purpose of SafeRides Connect is to provide safe transportation to individuals " +
                 "who are generally traveling alone and when no other means of safe transportation are available within" +
                 " the designated SafeRides Connect boundaries. There is a maximum limit of three " +
@@ -18,18 +18,23 @@ public class ExpandableListDataPump {
                 "\n");
 
 
-        List safeWalksInfo = new ArrayList();
+        List<String> safeWalksInfo = new ArrayList<>();
         safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
                 "students, faculty, and staff. With just a phone call, trained Student Patrol officers " +
                 "will come meet you and walk with you to your destination.\n" +
                 "\n");
 
-        List howToSafeRides = new ArrayList();
-        howToSafeRides.add("woo");
+        List<String> howToSafeRides = new ArrayList<String>();
+        howToSafeRides.add("Use the SafeRides Connect App. Download the SafeRides Connect App " +
+                "from the Apple App Store or the Google Play Store and register yourself." +
+                " Open the App, enter your origin, destination, number of people, and tap “Create Journey”. " +
+                "The App will determine if a fixed-route trip is appropriate and will provide an itinerary. " +
+                "If no fixed route is appropriate, a SafeRide Connect trip will be offered. " +
+                "Tap “Book Trip” to accept the ride. Then monitor the App for updated trip information.");
 
 
-        List howToSafeWalks = new ArrayList();
-        howToSafeRides.add("To request a SafeWalks escort, call 217-333-1216. " +
+        List<String> howToSafeWalks = new ArrayList<String>();
+        howToSafeWalks.add("To request a SafeWalks escort, call 217-333-1216. " +
                 "You can also use an emergency phone to contact a dispatcher. " +
                 "Please give at least 15 minutes notice.");
 
@@ -42,19 +47,19 @@ public class ExpandableListDataPump {
         return expandableListDetail;
     }
 
-    public static HashMap getPoliceData() {
-        HashMap expandableListDetail = new HashMap();
+    public static HashMap<String, List<String>> getPoliceData() {
+        HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        List policeInfo = new ArrayList();
+        List<String> policeInfo = new ArrayList<String>();
         policeInfo.add("The University of Illinois Police Department operates 24 hours a day, " +
                 "365 days a year. It is fully-accredited like any other police department, and its officers provide patrol services, emergency response and investigative resources.");
 
-        List howToPolice = new ArrayList();
+        List<String> howToPolice = new ArrayList<>();
         howToPolice.add("In case of an emergency, please call 911. Otherwise, the UIPD can be reached by" +
                 "Calling (217) 333-1216.");
 
 
-        List additionalInfo = new ArrayList();
+        List<String> additionalInfo = new ArrayList<>();
         additionalInfo.add("Patrol operations are the backbone of that effort. The most basic service " +
                 "any police department can provide is a quick response when someone calls 911. " +
                 "Our patrol officers do that and more. They are the first to respond when anyone needs an officer, " +
@@ -67,14 +72,10 @@ public class ExpandableListDataPump {
                 " as well as investigate other crimes of a violent nature. When crime does happen, " +
                 "it is our goal to identify and apprehend offenders as quickly as possible.\n");
 
-        List wow = new ArrayList();
-        wow.add("whoa");
-
 
         expandableListDetail.put("What is the UIPD?", policeInfo);
         expandableListDetail.put("How can I reach the UIPD", howToPolice);
         expandableListDetail.put("What else should I know about the UIPD?", additionalInfo);
-        expandableListDetail.put("yes?", wow);
 
         return expandableListDetail;
     }
