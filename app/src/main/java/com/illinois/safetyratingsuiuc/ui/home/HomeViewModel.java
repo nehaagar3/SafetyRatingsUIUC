@@ -13,7 +13,10 @@ public class HomeViewModel extends ViewModel {
         mText.setValue("Safety is multi-dimensional. If you or someone you know are a victim of a " +
                 "crime or otherwise, feel unsafe, please contact authorities and click on the " +
                 "navigation bar on the top-left corner to explore other safety resources on " +
-                "campus.");
+                "campus. \n" +
+                "\n" +
+                "Emergency: 911 \n" +
+                "Campus Police: (217) 333-1216");
     }
 
     public LiveData<String> getText() {
