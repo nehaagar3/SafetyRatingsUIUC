@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ViewRatingsActivity"
+    tools:showIn="@layout/activity_view_ratings">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/ratings_graph"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textStyle="bold"
+            android:textSize="10pt"
+            android:text="Filter Reviews by Time"
+            />
+
+            <GridLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/text_margin"
+                android:columnCount="2">
+
+                <Spinner
+                    android:id="@+id/filter_time_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:paddingRight="25dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="50dp">
+
+                    <TextView
+                        android:id="@+id/time_bounded_rating_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="5dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <RatingBar
+                        android:id="@+id/time_bounded_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:layout_marginRight="10dp"
+                        android:paddingTop="3dp"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:scaleX="1"
+                        android:scaleY="1" />
+                </LinearLayout>
+
+            </GridLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/review_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
