@@ -15,10 +15,12 @@ import android.widget.Spinner;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class AddRatingsActivity extends AppCompatActivity {
-    private String date = "";
+    private String formattedDate = "";
     private int position = 0;
     private String comment = "";
     private float rating = 0;
@@ -61,10 +63,10 @@ public class AddRatingsActivity extends AppCompatActivity {
                 DatePicker datePicker = findViewById(R.id.datePicker);
                 long dateTime = datePicker.getCalendarView().getDate();
                 Date date = new Date(dateTime);
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                String formattedDate = dateFormat.format(date);
+                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+                formattedDate = dateFormat.format(date);
                 if (comment.trim().equals("")) {
-                    nameEditText.setError("Comment is " + time); // TODO: better error message?
+                    nameEditText.setError("This is required");
                 }
                 else {
                     // TODO: make reviews object and add to location
