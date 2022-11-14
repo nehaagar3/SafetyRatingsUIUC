@@ -3,6 +3,8 @@ package com.illinois.safetyratingsuiuc;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +22,7 @@ public class Resource extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityResourceBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

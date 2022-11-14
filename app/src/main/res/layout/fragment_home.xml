@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="200dp"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="About us"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"

@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.GalleryFragment">
 
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="#A4C739"
+        android:dividerHeight="0.5dp" />
+
+
     <TextView
         android:id="@+id/text_gallery"
         android:layout_width="match_parent"

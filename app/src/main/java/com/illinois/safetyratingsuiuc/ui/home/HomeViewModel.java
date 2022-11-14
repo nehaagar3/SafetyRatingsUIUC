@@ -10,7 +10,10 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Safety is multi-dimensional. If you or someone you know are a victim of a " +
+                "crime or otherwise, feel unsafe, please contact authorities and click on the " +
+                "navigation bar on the top-left corner to explore other safety resources on " +
+                "campus.");
     }
 
     public LiveData<String> getText() {
