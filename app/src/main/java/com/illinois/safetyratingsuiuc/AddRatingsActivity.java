@@ -2,66 +2,84 @@ package com.illinois.safetyratingsuiuc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 
-public class AddRatingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    public static final String[] times = new String[]{"12 AM - 3 AM", "3 AM - 6 AM", "6 AM - 9 AM", "9 AM - 12 PM", "12 PM - 3 PM", "3 PM - 6 PM", "6 PM - 9 PM", "9 PM - 12 AM"};
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class AddRatingsActivity extends AppCompatActivity {
+    private String date = "";
+    private int position = 0;
+    private String comment = "";
+    private float rating = 0;
+    private String time = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ratings);
         //get the spinner from the xml.
-        getSupportActionBar().setTitle("Main Quad"); // TODO: pass as intent
+        Bundle b = getIntent().getExtras();
+        String location = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
+        getSupportActionBar().setTitle(location);
+
         Spinner dropdown = findViewById(R.id.spinner1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, times);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Constants.timeStrings);
         dropdown.setAdapter(adapter);
-        dropdown.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        EditText nameEditText = (EditText) findViewById(R.id.comment);
-        String comment = nameEditText.getText().toString();
-        RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.rating);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                position = i;
+                time = Constants.timeStrings.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         Button submitButton = (Button) findViewById(R.id.submitReviewButton);
         // perform click event on button
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get values and then displayed in a toast
-                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating = "Rating :: " + simpleRatingBar.getRating();
+                EditText nameEditText = (EditText) findViewById(R.id.comment);
+                comment = nameEditText.getText().toString();
+                RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.rating);
+                rating = simpleRatingBar.getRating();
+                DatePicker datePicker = findViewById(R.id.datePicker);
+                long dateTime = datePicker.getCalendarView().getDate();
+                Date date = new Date(dateTime);
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String formattedDate = dateFormat.format(date);
                 if (comment.trim().equals("")) {
-                    nameEditText.setError("Comment is required"); // TODO: better error message?
+                    nameEditText.setError("Comment is " + time); // TODO: better error message?
                 }
-                // TODO: make reviews object and add to location
+                else {
+                    // TODO: make reviews object and add to location
+                    Review review = new Review(location, formattedDate, time, rating, comment);
+                    Globals.reviewData.getReviewLocation(location).addReview(position, review); // timeInterval: index in time interval list
+                    Intent intent = new Intent(AddRatingsActivity.this, ViewRatingsActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location); //Your id
+                    intent.putExtras(b); //Put your id to your next Intent
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
-
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // TODO Auto-generated method stub
-    }
 
 }
