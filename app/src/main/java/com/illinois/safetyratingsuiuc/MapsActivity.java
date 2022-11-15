@@ -11,12 +11,8 @@ import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -103,33 +99,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-//        // inflate the layout of the popup window
-//        LayoutInflater inflater = (LayoutInflater)
-//                getSystemService(LAYOUT_INFLATER_SERVICE);
-//        View popupView = inflater.inflate(R.layout.popup_window, null);
-//
-//        // create the popup window
-//        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//        boolean focusable = true; // lets taps outside the popup also dismiss it
-//        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//        binding.getRoot().post(new Runnable() {
-//            @Override
-//            public void run() {
-//                // show the popup window
-//                // which view you pass in doesn't matter, it is only used for the window tolken
-//                popupWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, 0);
-//                // dismiss the popup window when touched
-//                Button dismissBotton = (Button) findViewById(R.id.dismissButton);
-////                dismissBotton.setOnClickListener(new View.OnClickListener() {
-////                    public void onClick(View v) {
-////                        popupWindow.dismiss();
-////                    }
-////                });
-//            }
-//        });
-
     }
 
     /**
@@ -165,5 +134,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // remove markers
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
     }
-
 }

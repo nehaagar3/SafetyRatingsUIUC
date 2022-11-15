@@ -20,6 +20,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -207,8 +208,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
             barEntriesArrayList.add(new BarEntry((float) i, rating));
         }
 
-
         BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
+        int color = ContextCompat.getColor(this, R.color.blue1);
+        barDataSet1.setColor(color);
 
         return barDataSet1;
     }
