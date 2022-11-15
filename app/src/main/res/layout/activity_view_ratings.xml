@@ -107,9 +107,4 @@
             app:fabSize="auto" />
 
     </LinearLayout>
-
-
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

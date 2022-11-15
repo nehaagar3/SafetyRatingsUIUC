@@ -6,6 +6,7 @@ import static java.security.AccessController.getContext;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -85,6 +86,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
 
+                Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
+//                Bundle b = new Bundle();
+//                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location); //Your id
+//                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
             }
 
             @Override
