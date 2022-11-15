@@ -29,7 +29,6 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
@@ -65,23 +64,6 @@ public class ViewRatingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(detail_container)
-//        // Expanded by default
-//        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//        bottomSheetBehavior.skipCollapsed = true
-//        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-//            override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-//                    finish()
-//                    //Cancels animation on finish()
-//                    overridePendingTransition(0, 0)
-//                }
-//            }
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//            }
-//        })
-
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
