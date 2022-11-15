@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.GalleryFragment">
 
+<!--    <ImageButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/play_store"-->
+<!--        tools:ignore="MissingConstraints"></ImageButton>-->
+
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_height="match_parent"

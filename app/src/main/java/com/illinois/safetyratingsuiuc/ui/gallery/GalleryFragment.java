@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -34,6 +35,7 @@ public class GalleryFragment extends Fragment {
     ExpandableListAdapter expandableListAdapter;
     List expandableListTitle;
     HashMap expandableListDetail;
+    private Button button;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,6 +49,14 @@ public class GalleryFragment extends Fragment {
         final TextView textView = binding.textGallery;
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+//        Button button = (Button) root.findViewById(R.id.rides_button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Do something in response to button click
+//            }
+//        });
+
+        // Expadnable list view declarations
         expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListData.getSafeWalksAndSafeRidesData();
         expandableListTitle = new ArrayList(expandableListDetail.keySet());
