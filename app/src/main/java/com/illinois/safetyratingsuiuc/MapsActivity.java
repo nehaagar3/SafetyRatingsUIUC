@@ -125,12 +125,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, 0);
                 // dismiss the popup window when touched
-                Button dismissBotton = (Button) findViewById(R.id.dismissButton);
-//                dismissBotton.setOnClickListener(new View.OnClickListener() {
-//                    public void onClick(View v) {
-//                        popupWindow.dismiss();
-//                    }
-//                });
+                Button dismissBotton = (Button) popupView.findViewById(R.id.dismissButton);
+                dismissBotton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
             }
         });
 
