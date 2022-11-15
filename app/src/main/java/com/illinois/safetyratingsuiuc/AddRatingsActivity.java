@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -55,6 +57,7 @@ public class AddRatingsActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // get values and then displayed in a toast
                 EditText nameEditText = (EditText) findViewById(R.id.comment);
                 comment = nameEditText.getText().toString();
@@ -69,15 +72,16 @@ public class AddRatingsActivity extends AppCompatActivity {
                     nameEditText.setError("This is required");
                 }
                 else {
-                    // TODO: make reviews object and add to location
                     Review review = new Review(location, formattedDate, time, rating, comment);
                     Globals.reviewData.getReviewLocation(location).addReview(position, review); // timeInterval: index in time interval list
                     Intent intent = new Intent(AddRatingsActivity.this, ViewRatingsActivity.class);
                     Bundle b = new Bundle();
                     b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location); //Your id
+                    b.putBoolean(Constants.SHOW_SNACK_BAR_KEY, true);
                     intent.putExtras(b); //Put your id to your next Intent
                     startActivity(intent);
                     finish();
+
                 }
             }
         });
