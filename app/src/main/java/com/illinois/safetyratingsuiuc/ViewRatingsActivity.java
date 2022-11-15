@@ -19,15 +19,18 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -64,6 +67,22 @@ public class ViewRatingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle b = getIntent().getExtras();
+        View parentLayout = findViewById(android.R.id.content);
+        try {
+            boolean showSnackBar = b.getBoolean(Constants.SHOW_SNACK_BAR_KEY);
+            if (showSnackBar) {
+                Snackbar.make(parentLayout, "Safety Review Submitted!", Snackbar.LENGTH_LONG).show();
+
+            }
+
+
+        }
+        catch(Exception e) {
+            // bundle doesn't have boolean set
+        }
+
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
