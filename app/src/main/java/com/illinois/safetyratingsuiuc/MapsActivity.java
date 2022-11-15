@@ -39,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private Marker currMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +81,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 LatLng latLng = place.getLatLng();
                 // TODO: Save the marker and remove when selecting another place.
-                mMap.addMarker(new MarkerOptions().position(latLng));
+                if (currMarker != null) currMarker.remove();
+                currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
+
             }
 
             @Override
