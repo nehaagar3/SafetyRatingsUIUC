@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -92,19 +93,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (currMarker != null) currMarker.remove();
                 currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
-              
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//                    @Override
+//                    public boolean onMarkerClick(@NonNull Marker marker) {
+//
+//                        return true;
+//                    }
+//                });
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
                     @Override
-                    public boolean onMarkerClick(@NonNull Marker marker) {
+                    public void run() {
                         Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
                         Bundle b = new Bundle();
                         b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, place.getName()); //Your id
                         intent.putExtras(b); //Put your id to your next Intent
                         startActivity(intent);
                         finish();
-                        return true;
                     }
-                });
+                }, 1000);
             }
 
             @Override
