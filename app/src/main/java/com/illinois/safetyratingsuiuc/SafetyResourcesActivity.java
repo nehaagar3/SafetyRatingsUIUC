@@ -1,5 +1,6 @@
 package com.illinois.safetyratingsuiuc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +27,7 @@ public class SafetyResourcesActivity extends AppCompatActivity {
 
         binding = ActivitySafetyResourcesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        getSupportActionBar().setTitle(R.string.resources_app_bar_title);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), 4);
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -37,8 +38,9 @@ public class SafetyResourcesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Return to map", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(SafetyResourcesActivity.this, MapsActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

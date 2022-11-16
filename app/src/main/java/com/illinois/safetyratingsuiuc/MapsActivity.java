@@ -138,6 +138,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        FloatingActionButton resourcesButton = binding.viewResourcesButton;
+        resourcesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, SafetyResourcesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 
