@@ -89,15 +89,16 @@ public class ExpandableListData {
                 "Calling (217) 333-1216.");
 
 
-        List<String> additionalInfo = new ArrayList<>();
-        additionalInfo.add("Patrol operations are the backbone of that effort. The most basic service " +
+        List<String> operationalUnits = new ArrayList<>();
+        operationalUnits.add("Patrol operations are the backbone of that effort. The most basic service " +
                 "any police department can provide is a quick response when someone calls 911. " +
                 "Our patrol officers do that and more. They are the first to respond when anyone needs an officer, " +
                 "and their careful documenting and monitoring of criminal activity in our area provides the foundation investigators and crime prevention experts need to take public safety one step further. \n" +
                 "\n" +
                 "The Community Outreach and Support Team provides educational and community-oriented " +
                 "program to empower our campus community members to look out for themselves and others. " +
-                "Within COAST, the Response, Evaluation and Crisis Help (REACH) initiative is an innovative co-response model that pairs mental health professionals with police officers to respond to crisis emergencies.\n" +
+                "Within COAST, the Response, Evaluation and Crisis Help (REACH) initiative " +
+                "is an innovative co-response model that pairs mental health professionals with police officers to respond to crisis emergencies.\n" +
                 "\n" +
                 "Detectives in our Investigations division provide services adapted for a college campus. " +
                 "Detectives are specially trained to support and care for survivors of sexual assault," +
@@ -106,7 +107,7 @@ public class ExpandableListData {
 
         expandableListDetail.put("What is the UIPD?", policeInfo);
         expandableListDetail.put("How can I reach the UIPD?", howToPolice);
-        expandableListDetail.put("What else should I know about the UIPD?", additionalInfo);
+        expandableListDetail.put("What are the different operational units in the UIPD?", operationalUnits);
 
         return expandableListDetail;
     }
