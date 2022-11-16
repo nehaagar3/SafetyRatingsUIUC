@@ -58,11 +58,13 @@ public class SafeWalksFragment extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                Toast.makeText(
+                if(groupPosition == 0) {
+                    Toast.makeText(
                                 getActivity().getApplicationContext(),
-                                "wow", Toast.LENGTH_SHORT
+                                "We don't actualy want to call SafeWalks.", Toast.LENGTH_SHORT
                         )
                         .show();
+                }
                 return false;
             }
         });

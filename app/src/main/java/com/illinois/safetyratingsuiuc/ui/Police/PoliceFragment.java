@@ -49,18 +49,18 @@ public class PoliceFragment extends Fragment {
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                "wow", Toast.LENGTH_SHORT
-                        )
-                        .show();
-                return false;
-            }
-        });
+        // expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        //     @Override
+        //     public boolean onChildClick(ExpandableListView parent, View v,
+        //                                 int groupPosition, int childPosition, long id) {
+        //         Toast.makeText(
+        //                         getActivity().getApplicationContext(),
+        //                         "wow", Toast.LENGTH_SHORT
+        //                 )
+        //                 .show();
+        //         return false;
+        //     }
+        // });
 
         return root;
     }
