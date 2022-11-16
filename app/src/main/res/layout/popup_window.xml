@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:background="#ffffff">
 
+<!--    TODO: Add margins for all components-->
+
     <TextView
         android:id="@+id/disclaimerTitle"
         android:layout_width="wrap_content"
