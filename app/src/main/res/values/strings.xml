@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">SafetyRatingsUIUC</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_resource">Resource</string>
+    <string name="menu_home">About Us</string>
+    <string name="title_activity_safety_resources">SafetyResourcesActivity</string>
+    <string name="tab_text_1">Overview</string>
+    <string name="tab_text_2">SafeRides</string>
+    <string name="tab_text_3">SafeWalk</string>
+    <string name="tab_text_4">UIPD</string>
     <string name="title">Title</string>
     <string name="supporting_text">This is a dummy bottom sheet</string>
     <string name="action">This button does nothing</string>
@@ -11,7 +21,10 @@
     <string name="enter_comment">Comment<font color='#FF0000'>*</font></string>
     <string name="submit_review">Submit Review</string>
     <string name="title_activity_view_ratings">ViewRatingsActivity</string>
-    <string name="disclaimer">Safety is multi-dimensional. If you or someone you know are as a victim of a crimor otherwise feel unsafe,<b> please contact authorities </b>and check out our resources page. </string>
+    <string name="resources_app_bar_title">Safety Resources</string>
+    <string name="emergency_number">911</string>
+    <string name="police_number">(217) 333-1216</string>
+    <string name="disclaimer">Safety is multi-dimensional. If you or someone you know are as a victim of a crime or otherwise feel unsafe,<b> please contact authorities </b>and check out our resources page. </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -153,8 +153,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
         viewResourcesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "TODO: Route to view resources page", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(ViewRatingsActivity.this, SafetyResourcesActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

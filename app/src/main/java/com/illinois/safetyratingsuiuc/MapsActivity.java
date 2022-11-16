@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -151,6 +154,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        FloatingActionButton resourcesButton = binding.viewResourcesButton;
+        resourcesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, SafetyResourcesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 
@@ -187,4 +200,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // remove markers
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
     }
+
+
 }
