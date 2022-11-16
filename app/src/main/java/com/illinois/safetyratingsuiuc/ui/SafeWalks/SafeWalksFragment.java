@@ -1,4 +1,4 @@
-package com.illinois.safetyratingsuiuc.ui.gallery;
+package com.illinois.safetyratingsuiuc.ui.SafeWalks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class GalleryFragment extends Fragment {
+public class SafeWalksFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
     ExpandableListView expandableListView;
@@ -38,8 +38,8 @@ public class GalleryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        SafeWalksViewModel galleryViewModel =
+                new ViewModelProvider(this).get(SafeWalksViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -49,7 +49,7 @@ public class GalleryFragment extends Fragment {
 
         // Expadnable list view declarations
         expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListData.getSafeRidesData();
+        expandableListDetail = ExpandableListData.getSafeWalksData();
         expandableListTitle = new ArrayList(expandableListDetail.keySet());
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);

@@ -16,5 +16,10 @@
     <string name="menu_home">About Us</string>
     <string name="menu_gallery">SafeRides and SafeWalks</string>
     <string name="menu_slideshow">UIPD</string>
+    <string name="title_activity_safety_resources">SafetyResourcesActivity</string>
+    <string name="tab_text_1">Overview</string>
+    <string name="tab_text_2">SafeRides</string>
+    <string name="tab_text_3">SafeWalks</string>
+    <string name="tab_text_4">UIPD</string>
 
 </resources>

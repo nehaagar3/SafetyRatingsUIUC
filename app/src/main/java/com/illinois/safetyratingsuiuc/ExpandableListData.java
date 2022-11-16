@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ExpandableListData {
-    public static LinkedHashMap<String, List<String>> getSafeWalksAndSafeRidesData() {
+    public static LinkedHashMap<String, List<String>> getSafeRidesData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
         List<String> safeRidesInfo = new ArrayList<>();
@@ -19,12 +19,6 @@ public class ExpandableListData {
                 "\n");
 
 
-        List<String> safeWalksInfo = new ArrayList<>();
-        safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
-                "students, faculty, and staff. With just a phone call, trained Student Patrol officers " +
-                "will come meet you and walk with you to your destination.\n" +
-                "\n");
-
         List<String> howToSafeRides = new ArrayList<String>();
         howToSafeRides.add("Use the SafeRides Connect App. Download the SafeRides Connect App " +
                 "from the Apple App Store or the Google Play Store and register yourself." +
@@ -33,17 +27,29 @@ public class ExpandableListData {
                 "If no fixed route is appropriate, a SafeRide Connect trip will be offered. " +
                 "Tap “Book Trip” to accept the ride. Then monitor the App for updated trip information.");
 
+        expandableListDetail.put("What is SafeRides?", safeRidesInfo);
+        expandableListDetail.put("How do I use SafeRides?", howToSafeRides);
+
+        return expandableListDetail;
+    }
+
+    public static LinkedHashMap<String, List<String>> getSafeWalksData() {
+        LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
+
+        List<String> safeWalksInfo = new ArrayList<>();
+        safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
+                "students, faculty, and staff. With just a phone call, trained Student Patrol officers " +
+                "will come meet you and walk with you to your destination.\n" +
+                "\n");
+
 
         List<String> howToSafeWalks = new ArrayList<String>();
         howToSafeWalks.add("To request a SafeWalks escort, call 217-333-1216. " +
                 "You can also use an emergency phone to contact a dispatcher. " +
                 "Please give at least 15 minutes notice.");
 
-        expandableListDetail.put("What is SafeRides?", safeRidesInfo);
         expandableListDetail.put("What is SafeWalks?", safeWalksInfo);
-        expandableListDetail.put("How do I use SafeRides?", howToSafeRides);
         expandableListDetail.put("How do I use SafeWalks?", howToSafeWalks);
-
 
         return expandableListDetail;
     }

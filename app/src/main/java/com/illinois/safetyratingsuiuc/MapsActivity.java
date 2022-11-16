@@ -48,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * Opens the resources page.
      */
     public void openResourcesActivity() {
-        Intent intent = new Intent(this, Resource.class);
+        Intent intent = new Intent(this, SafetyResourcesActivity.class);
         startActivity(intent);
     }
 
