@@ -30,10 +30,19 @@ public class ExpandableListData {
                 " Open the App, enter your origin, destination, number of people, and tap “Create Journey”. " +
                 "The App will determine if a fixed-route trip is appropriate and will provide an itinerary. " +
                 "If no fixed route is appropriate, a SafeRide Connect trip will be offered. " +
-                "Tap “Book Trip” to accept the ride. Then monitor the App for updated trip information.");
+                "Tap “Book Trip” to accept the ride. Then monitor the App for updated trip information." +
+                "\n" +
+                "You can also call 217.384.8188. Provide the dispatcher with the following information: " +
+                "your name (first and last), phone number, email address, pick-up location " +
+                "(street address/landmark), and destination. If your trip is within the SafeRides " +
+                "Connect boundaries, the dispatcher will enter the trip into the system and will give you the details of the trip");
+
+        List<String> safeRidesWaitTime = new ArrayList<String>();
+        howToSafeRides.add("Expect waiting times of 15 minutes during the week, and up to 30 minutes on the weekend when demand is higher. ");
 
         expandableListDetail.put("What is SafeRides?", safeRidesInfo);
         expandableListDetail.put("How do I use SafeRides?", howToSafeRides);
+        expandableListDetail.put("What is the expected wait time for my SafeRide?", safeRidesWaitTime);
 
         return expandableListDetail;
     }
@@ -72,7 +81,8 @@ public class ExpandableListData {
 
         List<String> policeInfo = new ArrayList<String>();
         policeInfo.add("The University of Illinois Police Department operates 24 hours a day, " +
-                "365 days a year. It is fully-accredited like any other police department, and its officers provide patrol services, emergency response and investigative resources.");
+                "365 days a year. It is fully-accredited like any other police department, and its officers " +
+                "provide patrol services, emergency response and investigative resources.");
 
         List<String> howToPolice = new ArrayList<>();
         howToPolice.add("In case of an emergency, please call 911. Otherwise, the UIPD can be reached by" +
