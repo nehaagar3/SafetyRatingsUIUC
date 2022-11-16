@@ -7,9 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue_1">#FF0A122A</color>
-    <color name="blue_2">#FF5171A5</color>
-    <color name="blue_3">#FFC7DBE6</color>
-    <color name="salmon">#FFFCA17D</color>
+    <color name="blue3">#FF0A122A</color>
+
+<!--    <color name="blue_3">#FFC7DBE6</color>-->
+<!--    <color name="salmon">#FFFCA17D</color>-->
+<!--    <color name="blue2">#FF89d1ff</color>-->
+
+<!--    <color name="blue1">#FFC0E8F9</color>-->
+
+
+    <color name="blue1">#FF9fb2d0</color>
+    <color name="blue2">#FF5171A5</color>
+
+
+
 
 </resources>

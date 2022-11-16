@@ -20,6 +20,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,9 +87,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
-        chartXAxis = Constants.timeStrings;
-        timeIntervals = new ArrayList<>(Arrays.asList(
-                "All time", "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        chartXAxis = new ArrayList<>(Arrays.asList(
+                "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        timeIntervals = new ArrayList<>(Constants.timeStrings);
+        timeIntervals.add(0, "All time");
 
         binding = ActivityViewRatingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -129,8 +131,6 @@ public class ViewRatingsActivity extends AppCompatActivity {
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "TODO: Route to add reviews", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 // Route to new activity
                 Intent intent = new Intent(ViewRatingsActivity.this, AddRatingsActivity.class);
                 Bundle b = new Bundle();
@@ -207,8 +207,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
             barEntriesArrayList.add(new BarEntry((float) i, rating));
         }
 
-
         BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
+        int color = ContextCompat.getColor(this, R.color.blue1);
+        barDataSet1.setColor(color);
 
         return barDataSet1;
     }
