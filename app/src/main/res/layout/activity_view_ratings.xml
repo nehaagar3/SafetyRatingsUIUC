@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
-            android:src= "@android:drawable/ic_input_get"
+            android:src="@drawable/baseline_menu_book_20"
             app:fabSize="auto" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
