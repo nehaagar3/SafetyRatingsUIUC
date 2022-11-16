@@ -108,6 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
 
+        // TODO: Manually update the main branch because the above code is from the wrong version.
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -121,12 +122,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, 0);
                 // dismiss the popup window when touched
-                Button dismissBotton = (Button) findViewById(R.id.dismissButton);
-//                dismissBotton.setOnClickListener(new View.OnClickListener() {
-//                    public void onClick(View v) {
-//                        popupWindow.dismiss();
-//                    }
-//                });
+                Button dismissBotton = (Button) popupView.findViewById(R.id.dismissButton);
+                dismissBotton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
             }
         });
 
