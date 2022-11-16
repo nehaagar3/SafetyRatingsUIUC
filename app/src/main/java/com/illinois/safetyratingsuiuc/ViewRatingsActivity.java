@@ -47,7 +47,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
     private ActivityViewRatingsBinding binding;
 
     // TODO Add as activity parameter
-    private String location = "Main Quad";
+    private String location;
     private ReviewLocation reviewLocation;
 
     private ArrayList<String> chartXAxis;
@@ -70,6 +70,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Bundle b = getIntent().getExtras();
+        location = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
+
         View parentLayout = findViewById(android.R.id.content);
         try {
             boolean showSnackBar = b.getBoolean(Constants.SHOW_SNACK_BAR_KEY);
