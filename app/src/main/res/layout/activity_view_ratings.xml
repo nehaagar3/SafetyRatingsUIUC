@@ -39,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_margin="@dimen/text_margin"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="50dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -48,6 +49,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:id="@+id/title_location"/>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,6 +60,8 @@
                     android:paddingTop="5dp"
                     android:textColor="@color/white"
                     android:id="@+id/overall_rating_num" />
+
+
 
                 <RatingBar
                     android:layout_width="wrap_content"

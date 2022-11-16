@@ -1,9 +1,11 @@
 package com.illinois.safetyratingsuiuc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,14 +29,16 @@ public class AddRatingsActivity extends AppCompatActivity {
     private String comment = "";
     private float rating = 0;
     private String time = "";
+    private String location = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ratings);
         //get the spinner from the xml.
         Bundle b = getIntent().getExtras();
-        String location = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
+        location = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
         getSupportActionBar().setTitle(location);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Spinner dropdown = findViewById(R.id.spinner1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Constants.timeStrings);
@@ -85,6 +89,23 @@ public class AddRatingsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // when back button is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(AddRatingsActivity.this, ViewRatingsActivity.class);
+                Bundle b = new Bundle();
+                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location);
+                b.putBoolean(Constants.SHOW_SNACK_BAR_KEY, false);
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -17,11 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/autocomplete_fragment"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
+
 
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -31,17 +33,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".MapsActivity">
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:src= "@drawable/ic_baseline_info_24"
-                    android:backgroundTint="@color/white"
-                    android:layout_marginRight = "10dp"
-                    android:layout_marginBottom = "20dp"
-                    app:fabCustomSize="48dp"
-                    app:fabSize="auto"
-                    app:maxImageSize="48dp" />
+                    android:layout_gravity="bottom|end"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/view_resources_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/fab_margin"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:src= "@android:drawable/ic_input_get"
+                        app:fabSize="auto" />
+                </LinearLayout>
             </fragment>
         </LinearLayout>
 
