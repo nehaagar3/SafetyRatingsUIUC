@@ -44,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private Marker currMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +85,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onPlaceSelected(Place place) {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 LatLng latLng = place.getLatLng();
-                // TODO: Save the marker and remove when selecting another place.
-                mMap.addMarker(new MarkerOptions().position(latLng));
+                if (currMarker != null) currMarker.remove();
+                currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
-
-                Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
-//                Bundle b = new Bundle();
-//                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location); //Your id
-//                intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-                finish();
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(@NonNull Marker marker) {
+                        Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, place.getName()); //Your id
+                        intent.putExtras(b); //Put your id to your next Intent
+                        startActivity(intent);
+                        finish();
+                        return true;
+                    }
+                });
             }
 
             @Override
@@ -107,8 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
-
-        // TODO: Manually update the main branch because the above code is from the wrong version.
+        
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
