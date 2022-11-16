@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private Marker currMarker;
+    public static Boolean showPopup = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,14 +125,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void run() {
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
-                popupWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, 0);
-                // dismiss the popup window when touched
-                Button dismissBotton = (Button) popupView.findViewById(R.id.dismissButton);
-                dismissBotton.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
+                if (showPopup) {
+                    popupWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, 0);
+                    // dismiss the popup window when touched
+                    Button dismissBotton = (Button) popupView.findViewById(R.id.dismissButton);
+                    dismissBotton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            popupWindow.dismiss();
+                        }
+                    });
+                    showPopup = false;
+                }
             }
         });
 
