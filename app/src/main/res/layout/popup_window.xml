@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#ffffff">
+    android:background="@drawable/popup_border"
+    android:padding="25dp"
+    >
 
 <!--    TODO: Add margins for all components-->
 
@@ -13,7 +15,9 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:text="Disclaimer"
-        android:textSize="24sp" />
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:layout_margin="15dp"/>
 
     <TextView
         android:id="@+id/disclaimerText"
@@ -21,8 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/disclaimerTitle"
         android:layout_centerInParent="false"
-        android:text="This is a piece of text."
-        android:textSize="16sp" />
+        android:text="@string/disclaimer"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,5 +35,8 @@
         android:layout_below="@id/disclaimerText"
         android:layout_centerHorizontal="true"
         android:text="Dismiss"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue2"
+        android:textColor="@color/white"
         android:id="@+id/dismissButton"/>
 </RelativeLayout>
