@@ -1,11 +1,14 @@
-package com.illinois.safetyratingsuiuc.ui.slideshow;
+package com.illinois.safetyratingsuiuc.ui.SafeRides;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,26 +20,26 @@ import com.illinois.safetyratingsuiuc.ExpandableListData;
 import com.illinois.safetyratingsuiuc.MyExpandableListAdapter;
 import com.illinois.safetyratingsuiuc.R;
 import com.illinois.safetyratingsuiuc.databinding.FragmentGalleryBinding;
-import com.illinois.safetyratingsuiuc.databinding.FragmentSlideshowBinding;
-import com.illinois.safetyratingsuiuc.ui.gallery.GalleryViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SlideshowFragment extends Fragment {
+
+public class SafeRidesFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List expandableListTitle;
     HashMap expandableListDetail;
+    private Button button;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        SafeRidesViewModel galleryViewModel =
+                new ViewModelProvider(this).get(SafeRidesViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -44,8 +47,9 @@ public class SlideshowFragment extends Fragment {
         final TextView textView = binding.textGallery;
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        // Expadnable list view declarations
         expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListData.getPoliceData();
+        expandableListDetail = ExpandableListData.getSafeRidesData();
         expandableListTitle = new ArrayList(expandableListDetail.keySet());
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
@@ -59,7 +63,7 @@ public class SlideshowFragment extends Fragment {
             }
         });
 
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+        expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
@@ -70,7 +74,7 @@ public class SlideshowFragment extends Fragment {
             }
         });
 
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        expandableListView.setOnChildClickListener(new OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {

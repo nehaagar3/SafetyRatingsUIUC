@@ -9,10 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.illinois.safetyratingsuiuc.R;
+import com.illinois.safetyratingsuiuc.ui.Police.PoliceFragment;
 import com.illinois.safetyratingsuiuc.ui.SafeWalks.SafeWalksFragment;
-import com.illinois.safetyratingsuiuc.ui.gallery.GalleryFragment;
+import com.illinois.safetyratingsuiuc.ui.SafeRides.SafeRidesFragment;
 import com.illinois.safetyratingsuiuc.ui.home.HomeFragment;
-import com.illinois.safetyratingsuiuc.ui.slideshow.SlideshowFragment;
+import com.illinois.safetyratingsuiuc.ui.Police.PoliceFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -40,11 +41,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new GalleryFragment();
+                return new SafeRidesFragment();
             case 2:
                 return new SafeWalksFragment();
             case 3:
-                return new SlideshowFragment();
+                return new PoliceFragment();
             default:
                 return null;
 

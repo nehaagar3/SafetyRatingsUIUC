@@ -38,7 +38,7 @@ public class ExpandableListData {
                 "Connect boundaries, the dispatcher will enter the trip into the system and will give you the details of the trip");
 
         List<String> safeRidesWaitTime = new ArrayList<String>();
-        howToSafeRides.add("Expect waiting times of 15 minutes during the week, and up to 30 minutes on the weekend when demand is higher. ");
+        safeRidesWaitTime.add("Expect waiting times of 15 minutes during the week, and up to 30 minutes on the weekend when demand is higher. ");
 
         expandableListDetail.put("What is SafeRides?", safeRidesInfo);
         expandableListDetail.put("How do I use SafeRides?", howToSafeRides);

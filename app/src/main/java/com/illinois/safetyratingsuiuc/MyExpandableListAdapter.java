@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.illinois.safetyratingsuiuc.ui.gallery.GalleryFragment;
-
 public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
