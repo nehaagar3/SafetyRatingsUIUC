@@ -22,6 +22,8 @@
     <string name="submit_review">Submit Review</string>
     <string name="title_activity_view_ratings">ViewRatingsActivity</string>
     <string name="resources_app_bar_title">Safety Resources</string>
+    <string name="emergency_number">911</string>
+    <string name="police_number">(217) 333-1216</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
