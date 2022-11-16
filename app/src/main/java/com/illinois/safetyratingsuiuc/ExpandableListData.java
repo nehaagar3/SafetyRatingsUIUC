@@ -6,6 +6,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ExpandableListData {
+
+    /**
+     * Retrieves data for the SafeRides fragment.
+     * @return data pertaining to the SafeRides FAQ
+     */
     public static LinkedHashMap<String, List<String>> getSafeRidesData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
@@ -33,6 +38,10 @@ public class ExpandableListData {
         return expandableListDetail;
     }
 
+    /**
+     * Retrieves data for the SafeWalks fragment.
+     * @return data pertaining to the SafeWalks FAQ
+     */
     public static LinkedHashMap<String, List<String>> getSafeWalksData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
@@ -54,6 +63,10 @@ public class ExpandableListData {
         return expandableListDetail;
     }
 
+    /**
+     * Retrieves data for the UIPD fragment.
+     * @return data pertaining to the UIPD FAQ
+     */
     public static LinkedHashMap<String, List<String>> getPoliceData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
@@ -87,6 +100,5 @@ public class ExpandableListData {
 
         return expandableListDetail;
     }
-
 
 }
