@@ -11,6 +11,7 @@
     <string name="enter_comment">Comment<font color='#FF0000'>*</font></string>
     <string name="submit_review">Submit Review</string>
     <string name="title_activity_view_ratings">ViewRatingsActivity</string>
+    <string name="disclaimer">Safety is multi-dimensional. If you or someone you know are as a victim of a crimor otherwise feel unsafe,<b> please contact authorities </b>and check out our resources page. </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
