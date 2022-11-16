@@ -54,6 +54,9 @@ public class ExpandableListData {
     public static LinkedHashMap<String, List<String>> getSafeWalksData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
+        List<String> callSafeWalks = new ArrayList<>();
+        callSafeWalks.add("SafeWalks: (217) 333 1216");
+
         List<String> safeWalksInfo = new ArrayList<>();
         safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
                 "students, faculty, and staff. With just a phone call, trained Student Patrol officers " +
@@ -66,6 +69,7 @@ public class ExpandableListData {
                 "You can also use an emergency phone to contact a dispatcher. " +
                 "Please give at least 15 minutes notice.");
 
+        expandableListDetail.put("Call SafeWalks", callSafeWalks);
         expandableListDetail.put("What is SafeWalks?", safeWalksInfo);
         expandableListDetail.put("How do I use SafeWalks?", howToSafeWalks);
 
