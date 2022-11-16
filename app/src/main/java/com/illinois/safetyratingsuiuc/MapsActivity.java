@@ -35,6 +35,8 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityMapsBinding;
 
 import java.util.Arrays;
@@ -86,6 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onPlaceSelected(Place place) {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 LatLng latLng = place.getLatLng();
+
                 if (currMarker != null) currMarker.remove();
                 currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
@@ -146,6 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -179,5 +183,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // remove markers
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
     }
-
 }

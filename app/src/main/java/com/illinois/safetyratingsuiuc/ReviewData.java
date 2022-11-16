@@ -16,8 +16,9 @@ public class ReviewData {
     public ReviewLocation getReviewLocation(String location) {
         ReviewLocation rl = locationMap.get(location);
         if(rl == null) {
+            locationMap.put(location, new ReviewLocation(location, createReviews(location)));
             // TODO This might be the source of some issues when adding new reviews for a location that doesn't exist yet
-            return new ReviewLocation(location);
+            return locationMap.get(location);
         } else {
             return rl;
         }
@@ -25,17 +26,6 @@ public class ReviewData {
 
     private void generateDummyData() {
         locationMap = new Hashtable<>();
-
-        String main_quad = "Main Quad";
-        locationMap.put(main_quad, new ReviewLocation(main_quad, createReviews(main_quad)));
-
-        for (int i = 1; i < 6; i++) {
-            // TODO make these real locations
-            String loc = "Location " + String.valueOf(i);
-
-            ReviewLocation location = new ReviewLocation(loc, createReviews(loc));
-            locationMap.put(String.valueOf(i), location);
-        }
     }
 
     private ArrayList<ArrayList<Review>> createReviews(String location) {

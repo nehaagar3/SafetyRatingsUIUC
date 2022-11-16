@@ -17,12 +17,15 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,7 +49,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
     private ActivityViewRatingsBinding binding;
 
     // TODO Add as activity parameter
-    private String location = "Main Quad";
+    private String location;
     private ReviewLocation reviewLocation;
 
     private ArrayList<String> chartXAxis;
@@ -69,6 +72,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Bundle b = getIntent().getExtras();
+        location = b.getString(Constants.LOCATION_ACTVITY_PARAM_KEY);
+
         View parentLayout = findViewById(android.R.id.content);
         try {
             boolean showSnackBar = b.getBoolean(Constants.SHOW_SNACK_BAR_KEY);
@@ -86,9 +91,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
-        chartXAxis = Constants.timeStrings;
-        timeIntervals = new ArrayList<>(Arrays.asList(
-                "All time", "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        chartXAxis = new ArrayList<>(Arrays.asList(
+                "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        timeIntervals = new ArrayList<>(Constants.timeStrings);
+        timeIntervals.add(0, "All time");
 
         binding = ActivityViewRatingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -97,7 +103,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
         toolBarLayout.setTitle(location);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView expandedTitle = binding.titleLocation;
         expandedTitle.setText(location);
 
@@ -129,8 +135,6 @@ public class ViewRatingsActivity extends AppCompatActivity {
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "TODO: Route to add reviews", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 // Route to new activity
                 Intent intent = new Intent(ViewRatingsActivity.this, AddRatingsActivity.class);
                 Bundle b = new Bundle();
@@ -207,8 +211,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
             barEntriesArrayList.add(new BarEntry((float) i, rating));
         }
 
-
         BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
+        int color = ContextCompat.getColor(this, R.color.blue1);
+        barDataSet1.setColor(color);
 
         return barDataSet1;
     }
@@ -283,4 +288,17 @@ public class ViewRatingsActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView adapterView) {}
         };
+
+    // when back button is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(ViewRatingsActivity.this, MapsActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
