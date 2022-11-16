@@ -17,7 +17,6 @@ import com.illinois.safetyratingsuiuc.ExpandableListData;
 import com.illinois.safetyratingsuiuc.MyExpandableListAdapter;
 import com.illinois.safetyratingsuiuc.R;
 import com.illinois.safetyratingsuiuc.databinding.FragmentGalleryBinding;
-import com.illinois.safetyratingsuiuc.databinding.FragmentSlideshowBinding;
 import com.illinois.safetyratingsuiuc.ui.SafeRides.SafeRidesViewModel;
 
 import java.util.ArrayList;
