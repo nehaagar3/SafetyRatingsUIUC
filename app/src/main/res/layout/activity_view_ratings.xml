@@ -22,9 +22,8 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleGravity="top|center_horizontal"
             app:expandedTitleTextColor="#00000000"
-
+            app:expandedTitleGravity="top|center_horizontal"
             app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.Toolbar
@@ -38,30 +37,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:paddingLeft="50dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20pt"
+                    android:textSize="14pt"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:id="@+id/title_location"/>
-
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_location"
                     android:paddingRight="5dp"
-                    android:textSize="10pt"
+                    android:textSize="18sp"
                     android:paddingTop="5dp"
                     android:textColor="@color/white"
                     android:id="@+id/overall_rating_num" />
-
-
 
                 <RatingBar
                     android:layout_width="wrap_content"

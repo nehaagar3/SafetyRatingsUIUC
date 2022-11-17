@@ -40,7 +40,7 @@ public class ReviewData {
                         "October " + j + ", 2022",
                         Constants.timeStrings.get(i),
                         rating,
-                        "Test Comment " + j));
+                        location + " test comment " + j));
             }
 
             locationReviews.add(r);
