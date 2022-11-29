@@ -83,13 +83,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
                 Snackbar.make(parentLayout, "Safety Review Submitted!", Snackbar.LENGTH_LONG).show();
 
             }
-
-
         }
         catch(Exception e) {
             // bundle doesn't have boolean set
         }
-
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
@@ -109,6 +106,30 @@ public class ViewRatingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView expandedTitle = binding.titleLocation;
         expandedTitle.setText(location);
+
+        AppBarLayout appBarLayout = binding.appBar;
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    isShow = true;
+                    binding.titleLocation.setVisibility(View.INVISIBLE);
+                    binding.overallRating.setVisibility(View.INVISIBLE);
+                    binding.overallRatingNum.setVisibility(View.INVISIBLE);
+                } else if (isShow) {
+                    isShow = false;
+                    binding.titleLocation.setVisibility(View.VISIBLE);
+                    binding.overallRating.setVisibility(View.VISIBLE);
+                    binding.overallRatingNum.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         overallRatingBar = binding.overallRating;
         overallRatingNum = binding.overallRatingNum;

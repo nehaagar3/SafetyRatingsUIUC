@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14pt"
+                    android:textSize="16pt"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:id="@+id/title_location"/>
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_location"
                     android:paddingRight="5dp"
-                    android:textSize="18sp"
+                    android:textSize="10pt"
                     android:paddingTop="5dp"
                     android:textColor="@color/white"
                     android:id="@+id/overall_rating_num" />
