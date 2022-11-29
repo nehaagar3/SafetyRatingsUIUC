@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -91,8 +93,9 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         reviewLocation = Globals.reviewData.getReviewLocation(this.location);
 
-        chartXAxis = new ArrayList<>(Arrays.asList(
-                "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+//        chartXAxis = new ArrayList<>(Arrays.asList(
+//                "12-3am", "3-6am", "6-9am", "9am-12pm", "12-3pm", "3-6pm", "6-9pm", "9pm-12am"));
+        chartXAxis = Constants.timeStrings;
         timeIntervals = new ArrayList<>(Constants.timeStrings);
         timeIntervals.add(0, "All time");
 
@@ -186,6 +189,8 @@ public class ViewRatingsActivity extends AppCompatActivity {
         xAxis.setValueFormatter(new IndexAxisValueFormatter(chartXAxis));
         // X axis values on bottom of chart
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        // Rotate labels so they fit
+        xAxis.setLabelRotationAngle(-45);
 
         chart.setPinchZoom(false);
         chart.setScaleEnabled(false);
@@ -196,7 +201,18 @@ public class ViewRatingsActivity extends AppCompatActivity {
         chart.getAxisLeft().setDrawAxisLine(false);
         chart.getAxisRight().setDrawGridLines(false);
 
-        chart.getLegend().setEnabled(false);
+        // Create Legend
+        int mainColor = ContextCompat.getColor(this, R.color.blue1);
+        int noDataColor = ContextCompat.getColor(this, R.color.grey1);
+        ArrayList<LegendEntry> customLegend = new ArrayList<>();
+        customLegend.add(new LegendEntry("Safety Rating",Legend.LegendForm.CIRCLE,10f,2f,null,mainColor));
+        customLegend.add(new LegendEntry("No Data",Legend.LegendForm.CIRCLE,10f,2f,null,noDataColor));
+        Legend legend = chart.getLegend();
+        legend.setCustom(customLegend);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+//        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        legend.setDrawInside(false);
 
         chart.animateY(2000);
     }
@@ -206,15 +222,24 @@ public class ViewRatingsActivity extends AppCompatActivity {
         ArrayList<ArrayList<Review>> reviewList = reviewLocation.getReviewData();
 
         ArrayList barEntriesArrayList = new ArrayList<>();
+        ArrayList barColors = new ArrayList();
+
+        int mainColor = ContextCompat.getColor(this, R.color.blue1);
+        int noDataColor = ContextCompat.getColor(this, R.color.grey1);
 
         for(int i = 0; i < reviewList.size(); i++) {
             Float rating = getAverageRating(reviewList.get(i));
-            barEntriesArrayList.add(new BarEntry((float) i, rating));
+            if (rating == null) {
+                barEntriesArrayList.add(new BarEntry((float) i, 2.5f));
+                barColors.add(noDataColor);
+            } else {
+                barEntriesArrayList.add(new BarEntry((float) i, rating));
+                barColors.add(mainColor);
+            }
         }
 
         BarDataSet barDataSet1 = new BarDataSet(barEntriesArrayList, "Stars");
-        int color = ContextCompat.getColor(this, R.color.blue1);
-        barDataSet1.setColor(color);
+        barDataSet1.setColors(barColors);
 
         return barDataSet1;
     }
@@ -225,8 +250,13 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         Float rating = getAverageRating(data);
 
-        overallRatingNum.setText(String.format("%.2g%n", rating));
-        overallRatingBar.setRating(rating);
+        if (rating == null) {
+            overallRatingNum.setText("");
+            overallRatingBar.setRating(0);
+        } else {
+            overallRatingNum.setText(String.format("%.2g%n", rating));
+            overallRatingBar.setRating(rating);
+        }
     }
 
     private void showReviews(Integer timeInterval) {
@@ -234,8 +264,13 @@ public class ViewRatingsActivity extends AppCompatActivity {
 
         Float rating = getAverageRating(data);
 
-        timeBoundedRatingNum.setText(String.format("%.2g%n", rating));
-        timeBoundedRatingBar.setRating(rating);
+        if (rating == null) {
+            timeBoundedRatingNum.setText("");
+            timeBoundedRatingBar.setRating(0);
+        } else {
+            timeBoundedRatingNum.setText(String.format("%.2g%n", rating));
+            timeBoundedRatingBar.setRating(rating);
+        }
 
         // set Reviews
         activeReviewData.clear();
@@ -244,6 +279,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
     }
 
     private Float getAverageRating(ArrayList<Review> data) {
+        // So we can distinguish between theoretical 0 stars and lack of data
+        if (data.size() == 0)
+            return null;
+
         Float rating = 0f;
         if (data.size() != 0) {
             for(int i = 0; i < data.size(); i++) {
