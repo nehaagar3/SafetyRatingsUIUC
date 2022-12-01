@@ -37,6 +37,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
@@ -155,7 +156,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         reviewRV.setLayoutManager(linearLayoutManager);
 
-        FloatingActionButton addReviewButton = binding.addReviewButton;
+        ExtendedFloatingActionButton addReviewButton = binding.addReviewButton;
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +174,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton viewResourcesButton = binding.viewResourcesButton;
+        ExtendedFloatingActionButton viewResourcesButton = binding.viewResourcesButton;
         viewResourcesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

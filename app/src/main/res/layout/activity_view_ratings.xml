@@ -90,20 +90,22 @@
         android:layout_gravity="bottom|end"
         android:orientation="vertical">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/view_resources_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
-            android:src="@drawable/baseline_menu_book_20"
+            android:text="Resources"
+            app:icon="@drawable/baseline_menu_book_20"
             app:fabSize="auto" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/add_review_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src= "@android:drawable/ic_input_add"
+            android:text="Review"
+            app:icon="@android:drawable/ic_input_add"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             app:fabSize="auto" />
