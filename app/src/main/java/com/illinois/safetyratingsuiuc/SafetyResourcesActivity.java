@@ -7,6 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +29,8 @@ public class SafetyResourcesActivity extends AppCompatActivity {
         binding = ActivitySafetyResourcesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setTitle(R.string.resources_app_bar_title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), 4);
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -43,5 +46,7 @@ public class SafetyResourcesActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
+
 }
