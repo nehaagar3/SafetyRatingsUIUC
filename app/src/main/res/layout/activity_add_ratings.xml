@@ -70,6 +70,7 @@
             android:layout_height="50dp"
             android:spinnerMode="dropdown"
             android:id="@+id/spinner1"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:layout_marginRight="50dp"/>
         </LinearLayout>
         </androidx.cardview.widget.CardView>
