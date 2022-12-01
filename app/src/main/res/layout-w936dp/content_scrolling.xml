@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ViewRatingsActivity"
+    android:id="@+id/ratings_content_scrolling"
     tools:showIn="@layout/activity_view_ratings">
 
     <androidx.core.widget.NestedScrollView
