@@ -172,6 +172,10 @@ public class ViewRatingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewRatingsActivity.this, SafetyResourcesActivity.class);
+                Bundle b = new Bundle();
+                b.putString("type", "view_ratings");
+                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location);
+                intent.putExtras(b);
                 startActivity(intent);
                 finish();
             }
