@@ -69,7 +69,7 @@ public class ExpandableListData {
                 "You can also use an emergency phone to contact a dispatcher. " +
                 "Please give at least 15 minutes notice.");
 
-        expandableListDetail.put("Call SafeWalks", callSafeWalks);
+        expandableListDetail.put("How do I contact SafeWalks?", callSafeWalks);
         expandableListDetail.put("What is SafeWalks?", safeWalksInfo);
         expandableListDetail.put("How do I use SafeWalks?", howToSafeWalks);
 
