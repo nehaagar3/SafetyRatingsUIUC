@@ -84,7 +84,7 @@
     <include layout="@layout/content_scrolling"
         android:id="@+id/ratings_content_layout"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -97,18 +97,17 @@
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:text="Resources"
-            app:icon="@drawable/baseline_menu_book_20"
-            app:fabSize="auto" />
+            app:icon="@drawable/baseline_menu_book_20" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/add_review_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Review"
+            android:layout_below="@id/view_resources_button"
             app:icon="@android:drawable/ic_input_add"
             android:layout_marginRight="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin"
-            app:fabSize="auto" />
+            android:layout_marginBottom="@dimen/fab_margin" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
