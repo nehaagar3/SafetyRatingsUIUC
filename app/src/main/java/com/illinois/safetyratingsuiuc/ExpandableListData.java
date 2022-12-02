@@ -1,5 +1,7 @@
 package com.illinois.safetyratingsuiuc;
 
+import android.text.util.Linkify;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -55,7 +57,7 @@ public class ExpandableListData {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
         List<String> callSafeWalks = new ArrayList<>();
-        callSafeWalks.add("SafeWalks: (217) 333 1216");
+        callSafeWalks.add("SafeWalks:" + "\033[4;2m" + "(217) 333 1216");
 
         List<String> safeWalksInfo = new ArrayList<>();
         safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
