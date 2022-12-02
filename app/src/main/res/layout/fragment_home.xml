@@ -49,6 +49,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
+                android:textColor="#CBC3E3"
                 android:text="@string/emergency_number"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -78,6 +79,7 @@
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
                 android:autoLink="phone"
+                android:textColor="#CBC3E3"
                 android:text="@string/police_number"
                 android:textSize="20sp" />
         </LinearLayout>
