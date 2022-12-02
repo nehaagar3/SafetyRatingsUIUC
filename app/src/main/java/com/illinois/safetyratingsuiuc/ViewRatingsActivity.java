@@ -14,7 +14,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -22,8 +21,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,26 +30,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityViewRatingsBinding;
+import com.illinois.safetyratingsuiuc.databinding.ContentScrollingBinding;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 public class ViewRatingsActivity extends AppCompatActivity {
 
     private ActivityViewRatingsBinding binding;
 
-    // TODO Add as activity parameter
     private String location;
     private ReviewLocation reviewLocation;
 
@@ -155,7 +149,7 @@ public class ViewRatingsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         reviewRV.setLayoutManager(linearLayoutManager);
 
-        FloatingActionButton addReviewButton = binding.addReviewButton;
+        ExtendedFloatingActionButton addReviewButton = binding.addReviewButton;
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,13 +167,44 @@ public class ViewRatingsActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton viewResourcesButton = binding.viewResourcesButton;
+        ExtendedFloatingActionButton viewResourcesButton = binding.viewResourcesButton;
         viewResourcesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewRatingsActivity.this, SafetyResourcesActivity.class);
+                Bundle b = new Bundle();
+                b.putString("type", "view_ratings");
+                b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, location);
+                intent.putExtras(b);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        ContentScrollingBinding scrollingBinding = binding.ratingsContentLayout;
+        NestedScrollView nestedScrollView = (NestedScrollView) scrollingBinding.ratingsContentScrolling;
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+
+            @Override
+            public void onScrollChange(@NonNull NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > oldScrollY + 12 && addReviewButton.isExtended() && viewResourcesButton.isExtended()) {
+                    addReviewButton.shrink();
+                    viewResourcesButton.shrink();
+                }
+
+                // the delay of the extension of the FAB is set for 12 items
+                if (scrollY < oldScrollY - 12 && !addReviewButton.isExtended() && !viewResourcesButton.isExtended()) {
+                    addReviewButton.extend();
+                    viewResourcesButton.extend();
+                }
+
+                // if the nestedScrollView is at the first item of the list then the
+                // extended floating action should be in extended state
+                if (scrollY == 0) {
+                    addReviewButton.extend();
+                    viewResourcesButton.extend();
+                }
+
             }
         });
 

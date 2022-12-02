@@ -38,6 +38,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.illinois.safetyratingsuiuc.databinding.ActivityMapsBinding;
@@ -154,11 +155,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        FloatingActionButton resourcesButton = binding.viewResourcesButton;
+        ExtendedFloatingActionButton resourcesButton = binding.viewResourcesButton;
         resourcesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MapsActivity.this, SafetyResourcesActivity.class);
+                Bundle b = new Bundle();
+                b.putString("type", "map"); //Your id
+                intent.putExtras(b);
                 startActivity(intent);
                 finish();
             }
