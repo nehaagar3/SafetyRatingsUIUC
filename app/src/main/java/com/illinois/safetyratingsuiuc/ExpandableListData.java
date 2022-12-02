@@ -16,6 +16,9 @@ public class ExpandableListData {
     public static LinkedHashMap<String, List<String>> getSafeRidesData() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
+        List<String> downloadSafeRides = new ArrayList<>();
+        downloadSafeRides.add("Install MTD Connect app from the GooglePlay Store.");
+
         List<String> safeRidesInfo = new ArrayList<>();
         safeRidesInfo.add("The purpose of SafeRides Connect is to provide safe transportation to individuals " +
                 "who are generally traveling alone and when no other means of safe transportation are available within" +
@@ -27,8 +30,8 @@ public class ExpandableListData {
 
 
         List<String> howToSafeRides = new ArrayList<String>();
-        howToSafeRides.add("Use the SafeRides Connect App. Download the SafeRides Connect App " +
-                "from the Apple App Store or the Google Play Store and register yourself." +
+        howToSafeRides.add("Use the MTD Connect App. Download the SafeRides Connect App " +
+                "from the Google Play Store and register yourself." +
                 " Open the App, enter your origin, destination, number of people, and tap “Create Journey”. " +
                 "The App will determine if a fixed-route trip is appropriate and will provide an itinerary. " +
                 "If no fixed route is appropriate, a SafeRide Connect trip will be offered. " +
@@ -42,6 +45,7 @@ public class ExpandableListData {
         List<String> safeRidesWaitTime = new ArrayList<String>();
         safeRidesWaitTime.add("Expect waiting times of 15 minutes during the week, and up to 30 minutes on the weekend when demand is higher. ");
 
+        expandableListDetail.put("How can I reach SafeRides?", downloadSafeRides);
         expandableListDetail.put("What is SafeRides?", safeRidesInfo);
         expandableListDetail.put("How do I use SafeRides?", howToSafeRides);
         expandableListDetail.put("What is the expected wait time for my SafeRide?", safeRidesWaitTime);
@@ -57,7 +61,7 @@ public class ExpandableListData {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
         List<String> callSafeWalks = new ArrayList<>();
-        callSafeWalks.add("SafeWalks:" + "\033[4;2m" + "(217) 333 1216");
+        callSafeWalks.add("SafeWalks: " + "(217) 333 1216");
 
         List<String> safeWalksInfo = new ArrayList<>();
         safeWalksInfo.add("SafeWalks is a free nightly service provided to University of Illinois Urbana-Champaign " +
@@ -71,7 +75,7 @@ public class ExpandableListData {
                 "You can also use an emergency phone to contact a dispatcher. " +
                 "Please give at least 15 minutes notice.");
 
-        expandableListDetail.put("How do I contact SafeWalks?", callSafeWalks);
+        expandableListDetail.put("How can I reach SafeWalks?", callSafeWalks);
         expandableListDetail.put("What is SafeWalks?", safeWalksInfo);
         expandableListDetail.put("How do I use SafeWalks?", howToSafeWalks);
 
@@ -86,14 +90,14 @@ public class ExpandableListData {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
         List<String> policeInfo = new ArrayList<String>();
-        policeInfo.add("The University of Illinois Police Department operates 24 hours a day, " +
-                "365 days a year. It is fully-accredited like any other police department, and its officers " +
-                "provide patrol services, emergency response and investigative resources.");
 
         List<String> howToPolice = new ArrayList<>();
         howToPolice.add("In case of an emergency, please call 911. Otherwise, the UIPD can be reached by" +
                 "Calling (217) 333-1216.");
 
+        policeInfo.add("The University of Illinois Police Department operates 24 hours a day, " +
+                "365 days a year. It is fully-accredited like any other police department, and its officers " +
+                "provide patrol services, emergency response and investigative resources.");
 
         List<String> operationalUnits = new ArrayList<>();
         operationalUnits.add("Patrol operations are the backbone of that effort. The most basic service " +
@@ -111,8 +115,8 @@ public class ExpandableListData {
                 " as well as investigate other crimes of a violent nature. When crime does happen, " +
                 "it is our goal to identify and apprehend offenders as quickly as possible.\n");
 
-        expandableListDetail.put("What is the UIPD?", policeInfo);
         expandableListDetail.put("How can I reach the UIPD?", howToPolice);
+        expandableListDetail.put("What is the UIPD?", policeInfo);
         expandableListDetail.put("What are the different operational units in the UIPD?", operationalUnits);
 
         return expandableListDetail;

@@ -1,5 +1,7 @@
 package com.illinois.safetyratingsuiuc.ui.Police;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,18 +51,18 @@ public class PoliceFragment extends Fragment {
         expandableListAdapter = new MyExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
-        // expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-        //     @Override
-        //     public boolean onChildClick(ExpandableListView parent, View v,
-        //                                 int groupPosition, int childPosition, long id) {
-        //         Toast.makeText(
-        //                         getActivity().getApplicationContext(),
-        //                         "wow", Toast.LENGTH_SHORT
-        //                 )
-        //                 .show();
-        //         return false;
-        //     }
-        // });
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                if(groupPosition == 0) {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:2173331216"));
+                    startActivity((callIntent));
+                }
+                return false;
+            }
+        });
 
         return root;
     }

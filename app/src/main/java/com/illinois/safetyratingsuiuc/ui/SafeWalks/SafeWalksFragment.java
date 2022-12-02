@@ -1,5 +1,7 @@
 package com.illinois.safetyratingsuiuc.ui.SafeWalks;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,11 +61,14 @@ public class SafeWalksFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 if(groupPosition == 0) {
-                    Toast.makeText(
-                                getActivity().getApplicationContext(),
-                                "We don't actualy want to call SafeWalks.", Toast.LENGTH_SHORT
-                        )
-                        .show();
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:2173331216"));
+                    startActivity((callIntent));
+//                    Toast.makeText(
+//                                getActivity().getApplicationContext(),
+//                                "We don't actualy want to call SafeWalks.", Toast.LENGTH_SHORT
+//                        )
+//                        .show();
                 }
                 return false;
             }
