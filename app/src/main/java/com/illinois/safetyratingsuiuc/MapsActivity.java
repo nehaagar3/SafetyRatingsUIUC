@@ -30,6 +30,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.RectangularBounds;
@@ -177,10 +178,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        mMap.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
             @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                LatLng latLng = marker.getPosition();
+            public void onPoiClick(@NonNull PointOfInterest pointOfInterest) {
+                LatLng latLng = pointOfInterest.latLng;
 
                 if (currMarker != null) currMarker.remove();
                 currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
@@ -191,13 +192,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void run() {
                         Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
                         Bundle b = new Bundle();
-                        b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, marker.getTitle()); //Your id
+                        b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, pointOfInterest.name); //Your id
                         intent.putExtras(b); //Put your id to your next Intent
                         startActivity(intent);
                         finish();
                     }
                 }, 1000);
-                return true;
             }
         });
 
@@ -220,26 +220,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // remove markers
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
-
-        // hardcoded markers
-       mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10753127074653, -88.2272354843298))
-                .title("Main Quad"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10837796485184, -88.22923249413792))
-                .title("Illini Union Bookstore"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.1071455866222, -88.22588769905803))
-                .title("Department of Anthropology"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10857003915786, -88.2261710761738))
-                .title("Noyes Laboratory"));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10761817334091, -88.22474414104356))
-                .title("Department of Biochemistry"));
     }
 }
