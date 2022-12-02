@@ -97,13 +97,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (currMarker != null) currMarker.remove();
                 currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
-//                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//                    @Override
-//                    public boolean onMarkerClick(@NonNull Marker marker) {
-//
-//                        return true;
-//                    }
-//                });
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -181,6 +174,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                LatLng latLng = marker.getPosition();
+
+                if (currMarker != null) currMarker.remove();
+                currMarker = mMap.addMarker(new MarkerOptions().position(latLng));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18.0f));
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(MapsActivity.this, ViewRatingsActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString(Constants.LOCATION_ACTVITY_PARAM_KEY, marker.getTitle()); //Your id
+                        intent.putExtras(b); //Put your id to your next Intent
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 1000);
+                return true;
+            }
+        });
+
         // Add a marker to left&right corner of campus to create bounds
         LatLng leftCorner = new LatLng(40.116777, -88.245366);
         LatLng rightCorner = new LatLng(40.097799, -88.218471);
@@ -200,7 +217,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // remove markers
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.empty_map_style));
+
+        // hardcoded markers
+       mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(40.10753127074653, -88.2272354843298))
+                .title("Main Quad"));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(40.10924702392586, -88.22723591121233))
+                .title("Illini Union"));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(40.10704712636425, -88.22854440238387))
+                .title("Lincoln Hall"));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(40.10857003915786, -88.2261710761738))
+                .title("Noyes Laboratory"));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(40.10761817334091, -88.22474414104356))
+                .title("Department of Biochemistry"));
     }
-
-
 }
