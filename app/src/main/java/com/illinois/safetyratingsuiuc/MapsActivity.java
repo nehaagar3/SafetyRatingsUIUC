@@ -227,12 +227,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("Main Quad"));
 
         mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10924702392586, -88.22723591121233))
-                .title("Illini Union"));
+                .position(new LatLng(40.10837796485184, -88.22923249413792))
+                .title("Illini Union Bookstore"));
 
         mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(40.10704712636425, -88.22854440238387))
-                .title("Lincoln Hall"));
+                .position(new LatLng(40.1071455866222, -88.22588769905803))
+                .title("Department of Anthropology"));
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(40.10857003915786, -88.2261710761738))
